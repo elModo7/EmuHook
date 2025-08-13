@@ -55,7 +55,7 @@ Emulator memory tooling is traditionally **per-emulator and per-system**. That f
 
 ## Quick start
 
-```ahk
+```autohotkey
 #Include %A_ScriptDir%\EmuHook.ahk
 
 ; Attach to mGBA (GBA)
@@ -77,14 +77,14 @@ ExitApp
 
 Attach by **PID** instead:
 
-```ahk
+```autohotkey
 emu := new EmuHook("ahk_pid 12345", "gba")
 
 ```
 
 Or auto-detect one running emulator:
 
-```ahk
+```autohotkey
 exe := checkRunningEmulator()          ; returns e.g. "ahk_exe mGBA.exe", "" or "multiple"
 emu := new EmuHook(exe, "gba")
 
@@ -98,7 +98,7 @@ emu := new EmuHook(exe, "gba")
 
 ### Constructor
 
-```ahk
+```autohotkey
 emu := new EmuHook("ahk_exe mGBA.exe", "gba")
 emu := new EmuHook("ahk_pid 1234", "gbc")
 
@@ -119,7 +119,7 @@ emu := new EmuHook("ahk_pid 1234", "gbc")
 
 ### Basic I/O
 
-```ahk
+```autohotkey
 ; Raw read/write (process address) – use when you already know the resolved process address
 val := emu.rm(addr, bytes := 1)
 emu.wm(value, addr, bytes := 1)
@@ -136,7 +136,7 @@ hex := emu.rmwhd(consoleAddr, bytes := 1, "wram") ; detected
 
 ### Pointer chains
 
-```ahk
+```autohotkey
 ; Read through pointers:  base -> +o1 -> +o2 ... -> value
 val := emu.rmp(base, [o1, o2, ...], byt := 4, finalByt := "")
 
@@ -151,7 +151,7 @@ emu.wmpd(value, consoleAddr, [o1, o2, ...], byt := 4, finalByt := "")
 
 ### Endianness & cleanup
 
-```ahk
+```autohotkey
 emu.setEndian("l") ; little (default)
 emu.setEndian("b") ; big (auto-set for GC/Wii)
 
@@ -223,7 +223,7 @@ For **Dolphin (GC/Wii)**, `addrCnv()` auto-converts the `0x80000000` (and Wii’
 
 ### 1) Overlay snippet (polling + event)
 
-```ahk
+```autohotkey
 #NoEnv
 #SingleInstance force
 #Include %A_ScriptDir%\EmuHook.ahk
@@ -261,7 +261,7 @@ ExitApp
 
 ### 2) Following a pointer chain
 
-```ahk
+```autohotkey
 ; Follow base + [0x28, 0x30, 0x43] then read a 4-byte value at the final address
 val := emu.rmp(emu.baseProc + 0x275CFC4, [0x28, 0x30, 0x43], 4)
 
@@ -272,7 +272,7 @@ val := emu.rmpd(0x02000000, [0x1C, 0x8], 4, 2) ; e.g., final 2-byte value
 
 ### 3) Dolphin (GC/Wii) big-endian write
 
-```ahk
+```autohotkey
 emu := new EmuHook("ahk_exe Dolphin.exe", "gc")
 ; For Dolphin, endian is auto "b" and 0x8000_0000 space is auto converted.
 emu.wmd(0x0032, 0x8034A0B2, 2, "ram") ; write big-endian halfword
@@ -365,7 +365,7 @@ emu.wmd(0x0032, 0x8034A0B2, 2, "ram") ; write big-endian halfword
 -   **Event system:** Wrap reads in a tiny dispatcher:
     
 
-```ahk
+```autohotkey
 class EventBus {
     __New(){ this.prev := {} }
     onChange(key, val) {
