@@ -192,7 +192,7 @@ For **Dolphin (GC/Wii)**, `addrCnv()` auto-converts the `0x80000000` (and Wii’
 
 > The class has per-emulator logic in `getEmulatorRAM() / getEmulatorWorkRAM() / getEmulatorSRAM()`.
 
--   **mGBA** — Resolves via a module-relative pointer chain (e.g., `base + 0x275CFC4` → `0x18/0x30 → 0x3C → 0x4 → (0x14 or 0x14C/0x18)` depending on GBA/GBC).
+-   **mGBA** — Resolves via a module-relative pointer chain depending on GBA/GBC).
     
 -   **VisualBoyAdvance (VBA)** — Uses static module offsets differing for **GBA vs GBC**.
     
@@ -204,7 +204,7 @@ For **Dolphin (GC/Wii)**, `addrCnv()` auto-converts the `0x80000000` (and Wii’
     
 -   **Gambatte Speedrun / GSE** — Resolves WRAM (e.g., `+0xD000` region) via pointer chain tuned for speedrun builds.
     
--   **BizHawk (EmuHawk)** — 64-bit. Uses an external helper `ThreadstackFinder64.exe` to locate a valid stack/anchor and resolve the emulated RAM region reliably. GBA is explicitly marked unsupported in this code path.
+-   **BizHawk (EmuHawk)** — 64-bit. Uses an external helper `ThreadstackFinder` to locate a valid stack/anchor and resolve the emulated RAM region reliably. GBA is explicitly marked unsupported in this code path.
     
 -   **DuckStation (PSX)** — 64-bit pointer work (requires AHK64).
     
@@ -212,7 +212,7 @@ For **Dolphin (GC/Wii)**, `addrCnv()` auto-converts the `0x80000000` (and Wii’
     
 -   **FCEUX (NES)**, **SNES9x (SNES/SFC)** — Simple module + offset or short chain.
     
--   **Dolphin (GC/Wii)** — Reads an 8-byte pointer from `base + 0x1298AE0` (Dolphin 2506a), then sets **big-endian** and enables address conversion for the `0x80000000` space (Wii support includes the second memory window at `0x8E000000`).
+-   **Dolphin (GC/Wii)** — Reads an 8-byte pointer from (Dolphin 2506a), then sets **big-endian** and enables address conversion for the `0x80000000` space (Wii support includes the second memory window at `0x8E000000`).
     
 
 > Each mapping is **emulator-build specific**. If a build updates, these offsets can shift.
@@ -262,8 +262,8 @@ ExitApp
 ### 2) Following a pointer chain
 
 ```ahk
-; Follow base + [0x18, 0x30, 0x4] then read a 4-byte value at the final address
-val := emu.rmp(emu.baseProc + 0x275CFC4, [0x18, 0x30, 0x4], 4)
+; Follow base + [0x28, 0x30, 0x43] then read a 4-byte value at the final address
+val := emu.rmp(emu.baseProc + 0x275CFC4, [0x28, 0x30, 0x43], 4)
 
 ; Same idea but from a console address and auto-detected space
 val := emu.rmpd(0x02000000, [0x1C, 0x8], 4, 2) ; e.g., final 2-byte value
@@ -358,116 +358,6 @@ emu.wmd(0x0032, 0x8034A0B2, 2, "ram") ; write big-endian halfword
 
 ----------
 
-## Supported emulators & systems (observed in code)
-
-Emulator EXE
-
-Systems
-
-AHK64?
-
-Notes
-
-`mGBA.exe`
-
-GBA, GBC
-
-No
-
-Pointer chain to RAM/WRAM.
-
-`VisualBoyAdvance.exe`
-
-GBA, GBC
-
-No
-
-Static offsets differ per system.
-
-`VisualBoyAdvance_H.exe`
-
-GBC
-
-No
-
-RAM via WRAM+offset; GBA blocked.
-
-`VBA-rr-svn480.exe`
-
-GBC
-
-No
-
-GBA blocked; WRAM-relative fixup.
-
-`bgb64.exe`
-
-GBC
-
-Yes
-
-GBA blocked.
-
-`gambatte_speedrun.exe` / `GSE.exe`
-
-GBC
-
-Mixed
-
-Speedrun builds; WRAM at `+0xD000` via chain.
-
-`EmuHawk.exe` (BizHawk)
-
-GB/GBC/etc.
-
-**Yes**
-
-Uses `ThreadstackFinder64.exe`; GBA blocked in code.
-
-`duckstation-qt-x64-ReleaseLTCG.exe`
-
-PSX
-
-**Yes**
-
-64-bit pointers.
-
-`melonDS.exe`
-
-NDS/DS
-
-**Yes**
-
-Validates romType; ARM9 RAM.
-
-`fceux.exe`
-
-NES
-
-No
-
-Simple mapping.
-
-`snes9x.exe`
-
-SNES/SFC
-
-No
-
-Simple mapping (WRAM at $7E:0000).
-
-`Dolphin.exe`
-
-GC/Wii
-
-**Yes**
-
-Big-endian; address conversion for `0x8000_0000` / `0x8E00_0000`.
-
-> **Note:** Exact offsets & pointer chains are tied to specific emulator builds and may change.
-
-----------
-
 ## Building overlays & Twitch plugins on top of EmuHook
 
 -   **Overlay UI:** Use AHK GUIs or offload to a browser source via local WebSocket/HTTP (e.g., AHK ↔ Node/WS). Poll memory at 30–60 Hz; debounce UI updates.
@@ -504,7 +394,7 @@ return
 
 ----------
 
-## Changelog (from code comments)
+## Changelog
 
 -   **0.5.8** — PC game hooking (not just emulators)
     
@@ -567,30 +457,13 @@ return
 
 ----------
 
-## Security & ethics
-
--   For **single-player/offline** use only. Don’t attach to protected/online titles.
-    
--   Distribute overlays/plugins, not ROMs or copyrighted assets.
-    
--   Respect emulator licenses.
-    
-
-----------
-
-## Roadmap (suggested)
+## Roadmap
 
 -   Finish **SRAM mappings** across all emulators.
     
 -   Add **typed readers/writers** (signed, floats).
     
--   Introduce **bulk reads** (batch RPM) to reduce overhead for overlays.
-    
--   Improve **multi-instance selection** (list PIDs and window titles).
-    
--   Add **automated self-tests** per emulator build (CI matrix).
-    
--   Migrate to **AHK v2** variant (or dual-target with a thin shim).
+-   Migrate to **AHK v2**.
     
 
 ----------
@@ -598,5 +471,3 @@ return
 ## Final notes
 
 EmuHook’s power lies in its **consistency**: once you target an address for one emulator, you can usually switch emulators without changing your overlay logic. It’s a solid foundation for **interactive, real-time** tooling—speedrunning races, Twitch crowd-control, data mining, or just deep game debugging.
-
-If you want, I can produce a **ready-to-ship demo overlay** (AHK GUI + a few memory events) or scaffold a **Node/OBS** bridge that consumes EmuHook reads and renders a modern overlay.
