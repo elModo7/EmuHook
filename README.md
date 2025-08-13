@@ -1,8 +1,8 @@
 # EmuHook — a unified memory-hooking library for emulators
 
 > **Version:** 0.5.8  
-> **Language:** AutoHotkey (v1, 32/64-bit)
-> **Language:** Java 18
+> **Language:** AutoHotkey (v1, 32/64-bit)  
+> **Language:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
 
 ----------
