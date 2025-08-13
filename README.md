@@ -22,7 +22,7 @@ EmuHook lets you:
 -   Use a **common address model** for your overlays, race/crowd-control plugins, real-time event dispatchers, data miners, and debugging tools.
     
 
-Supported emulators (seen in the current code): **mGBA, VisualBoyAdvance, VBA-H, VBA-rr, BGB, Gambatte Speedrun, GSE, BizHawk (EmuHawk), DuckStation (PSX), melonDS (NDS), FCEUX (NES), SNES9x (SNES), Dolphin (GC/Wii)**. Some require **AHK64**.
+Supported emulators (as of 0.5.8): **mGBA, VisualBoyAdvance, VBA-H, VBA-rr, BGB, Gambatte Speedrun, GSE, BizHawk (EmuHawk), DuckStation (PSX), melonDS (NDS), FCEUX (NES), SNES9x (SNES), Dolphin (GC/Wii)**. Some require **AHK64**.
 
 ----------
 
