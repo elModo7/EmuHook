@@ -1,5 +1,5 @@
 
-# EmuHook — a unified memory-hooking library for emulators
+# EmuHook — a unified memory-hooking library for emulators and PC games
 
 > **Version:** 0.5.8  
 > **Language:** AutoHotkey (v1, 32/64-bit)  
@@ -731,3 +731,5 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > This scripts hooks onto ***Twitch chat*** via IRC and then ***translates commands into in-game actions***, like playing with your inventory, health, enemies, status effects and so on.
 > There are ***programmable cooldowns and multi language support***.
 > [***I have a small demo video here***](https://youtu.be/T4YSzTgq_FU)
+---
+I also made some ***achievement systems*** using EmuHook similar to **Retro Achievements** like in [***this demo***](https://youtu.be/IK_mhlc3ncU).
