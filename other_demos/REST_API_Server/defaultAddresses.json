@@ -1,0 +1,14 @@
+[
+    {
+        "address": "0x8D9",
+        "bytes": 1,
+        "endian": "l",
+        "ram": "wram"
+    },
+    {
+        "address": "0x8DB",
+        "bytes": 1,
+        "endian": "l",
+        "ram": "wram"
+    }
+]
