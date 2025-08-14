@@ -35,6 +35,7 @@
     - [Server.ahk](#3-serverahk)
 16. [Roadmap](#roadmap)
 17. [Final notes](#final-notes)
+18. [Some Image Demos](#some-image-demos)
 
 ----------
 
