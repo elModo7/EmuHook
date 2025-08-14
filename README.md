@@ -7,6 +7,35 @@
 
 ----------
 
+## Index
+
+1. [TL;DR](#tldr)
+2. [Why I built it](#why-i-built-it)
+3. [Feature highlights](#feature-highlights)
+4. [Quick start](#quick-start)
+5. [API (practical)](#api-practical)
+   - [Constructor](#constructor)
+   - [Basic I/O](#basic-io)
+   - [Pointer chains](#pointer-chains)
+   - [Endianness & cleanup](#endianness--cleanup)
+6. [Address-space detection](#address-space-detection-what-happens-behind-the-scenes)
+7. [Emulator notes](#emulator-notes-how-base-pointers-are-found)
+8. [Real examples](#real-examples-you-can-paste)
+9. [Performance & design choices](#performance--design-choices)
+10. [Robustness, pitfalls & recommendations](#robustness-pitfalls--recommendations-code-review)
+11. [Building overlays & Twitch plugins](#building-overlays--twitch-plugins-on-top-of-emuhook)
+12. [Changelog](#changelog)
+13. [Extending EmuHook](#extending-emuhook-how-to-add-a-new-emulatorsystem)
+14. [Troubleshooting](#troubleshooting)
+15. [Supplementary Examples & Variants](#supplementary-examples--variants)
+    - [Memory Viewer (GBC Example)](#1-memory-viewer-gbc-example)
+    - [EmuHookHTTP](#2-emuhookhttp)
+    - [Server.ahk](#3-serverahk)
+16. [Roadmap](#roadmap)
+17. [Final notes](#final-notes)
+
+----------
+
 ## TL;DR
 
 EmuHook lets you:
