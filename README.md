@@ -1,4 +1,5 @@
 
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
 > **Version:** 0.5.8  
@@ -610,7 +611,9 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 ***[Game Boy Color]*** Pokemon Crystal - Multiplayer Proof of Concept
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/pokecrystal_multiplayer.png?raw=true)
 > Tracks player positions and ***shares them between concurrent emulators*** so that you can see other players on your game.
+> 
 > I made a long video explaining and testing this here.
+> 
 > [***A small demo video can be found here***      ![](https://i.ytimg.com/vi/CU6lkQsZhMY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAu3t0CMYSFXpYEl-sz8OcnVY71tA)](https://www.youtube.com/watch?v=CU6lkQsZhMY)
 > 
 > [***And here I have another demo video no its usage***](https://youtu.be/fGthSATYbsU?si=XqFgtgnCzVnLQYpW)
@@ -619,33 +622,41 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 ***[Super Nintendo]*** Super Mario World - Web Tracker **(Java branch of EmuHook)**
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/smw.png?raw=true)
 > Tracks player data and displays it in a transparent web panel that you can add to OBS.
+> 
 > This example runs on the Java branch of EmuHook and has ***JavaScript routines*** that periodically calls each endpoint for collecting and displaying data.
+> 
 > [***I have a small demo video here***](https://youtu.be/BcFzQ5KaX1s)
 ---
 
 ***[Game Boy Color]*** Kirby's Dream Land 2 - OBS Overlay + **Godot**
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/kirbydl2.png?raw=true)
 > This overlay is made in the **Godot game engine**, EmuHook exposes a ***TCP socket / WebSockets endpoint*** and then Godot receives data periodically for updating the UI.
+> 
 > [***I have a small demo video here***](https://youtu.be/Q8ny1_93EDs)
 ---
 
 ***[GameCube]*** Eternal Darkness: Sanity's Requiem - SRT
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/ed.png?raw=true)
 > Tracks player data and shows a simple UI. This is what got me into ***inner pointers + big-endian*** settings being added to EmuHook!
+> 
 > I have a small demo video here:
+> 
 > [***Small demo video here: Eternal Darkness - Real-Time Tracker***](https://youtu.be/u-wg41RRoXI)
 ---
 
 ***[Game Boy Advance]*** Wario Land 4 - Multiplayer & Touch Controls
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/wl4_multiplayer.png?raw=true)
 > Tracks player positions and shares them between concurrent emulators so that you can see other players on the ***Real-Time map, similar to Super Mario 64 DS.***
+> 
 > [***I have a small demo video here***](https://youtu.be/ZMIaK6Ex5Ls)
 ---
 
 ***[Game Boy Advance]*** Pokemon Fire Red - Spinda Pattern Generator (Real-Time)
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/pokefirered.png?raw=true)
 > A **web connected to an EmuHook backend via WebSockets** allow you to draw a Spinda and will force the next encounter to ***find the desired Spinda that you just drew.***
+> 
 > [***I have a small demo video here***](https://youtu.be/TZWtNENz6po)
+> 
 > [***I have a full explanation + live programming session here (long)***](https://youtu.be/ysw6vOrmmxI)
 ---
 
@@ -670,66 +681,89 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > There is a ***Pokemon Announcer system*** made in **Godot** that gives alerts on certain events.
 > 
 > And lastly an ***Active Pokemon's possible movepool*** so you don't have to search a guide on what your Pokemon will learn next.
-> 
+>   
+>  
 > **I have a few demo videos on this one:**
+> 
 > [***Pokemon Announcer System Demo***](https://youtu.be/n8Hv0ydb9OU)
+> 
 > [***Pokemon Crystal Tools for Data Mining***](https://youtu.be/wny_OoMoA9w)
+> 
 > [***Live Capture Alerts Demo***](https://youtu.be/f1iQT9MvXLQ)
+> 
 > [***Daycare Shiny Egg Breeding Demo***](https://youtu.be/irIogYmYmmY)
 ---
 
 ***[Nintendo DS]*** Metroid Prime Hunters - Player Health & Points Tracker
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/mph.png?raw=true)
 > A tracker made for online matches because ***the netcode in MPH is not really good***, this way you can ***predict lag*** seeing when you actually hit a player.
+> 
 > Actually this only works for bot matches because health data is not shared in online matches, but it doesn't stop anyone from creating a middleware server for upgraded clients that do share this data using EmuHook (I am too lazy to do that right now but it should be a rather simple task, commissions are open here I guess hehe).
+> 
 > [***I have a small demo video here***](https://youtu.be/f7FraMlZ-gA)
 ---
 
 ***[Game Boy Color]*** Pokemon Crystal - HTTP REST API Pokemon Home/Bank
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/pokemon_home.png?raw=true)
 > I ***don't like to depend on third party services*** like the actual Pokemon Home, so I made my own.
+> 
 > I **can store my pokemons on the cloud, trade them back to the game and so on**.
+> 
 > There is a **full video** explaining each and every step I did for making this project here:
+> 
 > [***I made an Unofficial Pokemon Home Cloud Storage without Nintendo***](https://www.youtube.com/watch?v=2ntk2z2zldg)
+> 
 > [***Second video demo explaining the usage a bit more here***](https://youtu.be/fGthSATYbsU?si=MsgduMuX_t5iSGyi)
 ---
 
 ***[PC & PSX]*** Resident Evil 1 (1996) - Real Time Map, Health Overlay & AutoSplitter
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/re1.png?raw=true)
 > This is a set of tools I have made for RE1, it features a Real-Time map, just like the DS version, a health hud and an autosplitter.
+> 
 > [***I have a demo video here***](https://youtu.be/R-Xl2rBG3Bc)
 
 ***[Game Boy Advance]*** Wario Land 4 - Speedrun Tracker
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/wl4.png?raw=true)
 > It tracks A LOT of data, it also calculates the completion percentage for 100% speedruns.
+> 
 > [***A demo video can be found here***](https://youtu.be/t7dcZh4QINw)
+> 
 > [***Another demo video can be found here***](https://youtu.be/jLcLBPUUhfs)
 
 ***[Game Boy Color]*** Pokemon Pinball - Adding Rumble Feature to unsupported emulators
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/pokepinball.png?raw=true)
 > This example reads constantly the status of the rumble and then through the XInput.dll library it makes your controller vibrate, no matter if the emulator supports vibration or not.
+> 
 > [***I have a small demo video here***](https://youtu.be/8nBiUiWHXtU)
 
 ***[PC & PSX]*** Resident Evil 1 (1996) - Entity Radar, IGT, Inventory Viewer
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/re1_2.png?raw=true)
 > This overlay has a custom, *from scratch* ***IGT tracker, inventory tracker, autosplitter, entity radar and a health hud.***
+> 
 > [***I have a small demo video here***](https://youtu.be/cI4cBudCgV4)
 
 ***[Game Boy Advance]*** Wario Land 4 - Web Tracker
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/wl4_web_tracker.png?raw=true)
 > This is one of my first ***Java branch testing*** that expose a ***REST API*** and via ***timed calls*** it does ***HTTP queries*** to the backend for gathering game info.
+> 
 > [***I have a small demo video here***](https://youtu.be/a_KyjHa1NiI)
 
 ***[PSX]*** Parasite Eve 2 - SRT (Commission)
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/PE.png?raw=true)
 > This is pretty much the one that started it all when dealing with emulators.
 > I was commissioned to do this for practicing the Parasite Eve II speedrun, it tracks current enemy HP.
+> 
 > [***I have a small demo video here***](https://youtu.be/M9eB8EqtNaU)
 
 ***[PC]*** Resident Evil 1 (1996) - Twitch Crowd Control
 ![re1_crowd_control.png](https://github.com/elModo7/EmuHook/blob/main/example_images/re1_crowd_control.png?raw=true)
 > This scripts hooks onto ***Twitch chat*** via IRC and then ***translates commands into in-game actions***, like playing with your inventory, health, enemies, status effects and so on.
+> 
 > There are ***programmable cooldowns and multi language support***.
+> 
 > [***I have a small demo video here***](https://youtu.be/T4YSzTgq_FU)
 ---
 I also made some ***achievement systems*** using EmuHook similar to **Retro Achievements** like in [***this demo***](https://youtu.be/IK_mhlc3ncU).
+
+---
+> *Some parts of this article have been auto-generated with AI because of lack of free time, however I have revised that the information given here meets the current version specification.*
