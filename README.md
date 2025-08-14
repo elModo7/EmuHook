@@ -725,3 +725,9 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > This is pretty much the one that started it all when dealing with emulators.
 > I was commissioned to do this for practicing the Parasite Eve II speedrun, it tracks current enemy HP.
 > [***I have a small demo video here***](https://youtu.be/M9eB8EqtNaU)
+
+***[PC]*** Resident Evil 1 (1996) - Twitch Crowd Control
+![re1_crowd_control.png](https://github.com/elModo7/EmuHook/blob/main/example_images/re1_crowd_control.png?raw=true)
+> This scripts hooks onto Twitch chat via IRC and then translates commands into in-game actions, like playing with your inventory, health, enemies, status effects and so on.
+> There are programmable cooldowns and multi language support.
+> [***I have a small demo video here***](https://youtu.be/T4YSzTgq_FU)
