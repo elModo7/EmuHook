@@ -550,18 +550,18 @@ Ideal for **cross-language integrations** (e.g., JS overlays), race coordinators
 
 ----------
 
-### 3. Server.ahk
+### 3. EmuHookServer.ahk
 
 **Purpose:**  
 A **centralized service** that runs EmuHook and exposes its capabilities over the network, acting as a hub for multiple tools to interact with the emulator simultaneously.
 
 **Key points:**
 
--   Built on `EmuHookHTTP.ahk` but may add:
+-   Built on `Socket.ahk` providing:
     
-    -   Multi-client handling
+    -   TCP/WebSocket handling
         
-    -   Route management
+    -   Config parameter (addresses, update interval...)
         
     -   Persistent memory watchers
         
