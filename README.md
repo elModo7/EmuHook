@@ -455,6 +455,107 @@ return
 -   **SRAM reads look wrong:** Not all emulators’ SRAM mapping is implemented yet; use WRAM where possible or add a mapping.
     
 
+---
+
+## Supplementary Examples & Variants
+
+These examples are built on the EmuHook core library described above, demonstrating practical applications and integrations.
+
+---
+
+### 1. Memory Viewer (GBC Example)
+
+**Purpose:**  
+A standalone **real-time memory viewer** for Game Boy Color titles, using EmuHook’s address-space detection to read live game data.
+
+**Key points:**
+- Targets GBC emulators supported by EmuHook (`mGBA`, `VBA`, etc.).
+- Uses `rmd()` to fetch memory in **console address space**.
+- Displays values in a scrolling or fixed window for debugging/hacking.
+- Auto-refresh loop for live updates.
+
+**Snippet:**
+```autohotkey
+emu := new EmuHook("ahk_exe mGBA.exe", "gbc")
+Loop {
+    val := emu.rmd(0xC000, 1, "ram") ; read from WRAM
+    ToolTip, Value @ C000: % Format("0x{:02X}", val)
+    Sleep 100
+}
+
+```
+
+**Usage:**  
+Great for **reverse-engineering** games, finding health/score addresses, or monitoring event triggers.
+
+----------
+
+### 2. EmuHookHTTP
+
+**Purpose:**  
+Extends EmuHook into a **local HTTP API**, allowing overlays, scripts, or remote services to query/write emulator memory without running AHK on the same machine.
+
+**Key points:**
+
+-   Wraps EmuHook calls inside a lightweight HTTP server.
+    
+-   Responds with JSON for memory reads, accepts POST for writes.
+    
+-   Can be polled by OBS browser sources, Node.js servers, or even Twitch bots.
+    
+-   Supports **multiple endpoints** like `/read?addr=...` and `/write`.
+    
+
+**Snippet:**
+
+```autohotkey
+; Example GET request:  /read?addr=0x02037D00&bytes=2&block=wram
+emu := new EmuHook("ahk_exe mGBA.exe", "gba")
+val := emu.rmd(addr, bytes, block)
+SendResponse("{""value"": " val "}")
+
+```
+
+**Usage:**  
+Ideal for **cross-language integrations** (e.g., JS overlays), race coordinators, or crowd-control tools.
+
+----------
+
+### 3. Server.ahk
+
+**Purpose:**  
+A **centralized service** that runs EmuHook and exposes its capabilities over the network, acting as a hub for multiple tools to interact with the emulator simultaneously.
+
+**Key points:**
+
+-   Built on `EmuHookHTTP.ahk` but may add:
+    
+    -   Multi-client handling
+        
+    -   Route management
+        
+    -   Persistent memory watchers
+        
+-   Acts as a bridge between local emulator memory and multiple remote subscribers.
+    
+
+**Snippet:**
+
+```autohotkey
+#Include EmuHookHTTP.ahk
+server := new EmuHookServer("gba", 8080)
+server.start()
+
+```
+
+**Usage:**  
+Perfect for **multi-user setups** (e.g., a Twitch channel with both an overlay and a chat bot reading/writing memory in real time).
+
+----------
+
+**Note:**  
+All these scripts depend on the EmuHook core library for actual memory access. Their value lies in **wrapping and extending** it for specific use-cases: visual debugging, HTTP-based overlays, or networked integrations.
+
 ----------
 
 ## Roadmap
