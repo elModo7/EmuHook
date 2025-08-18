@@ -7,6 +7,7 @@
 > **Language:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
 
+[⭐ Examples Here!](#some-image-demos)
 ----------
 
 ## Index
@@ -35,7 +36,7 @@
     - [Server.ahk](#3-serverahk)
 16. [Roadmap](#roadmap)
 17. [Final notes](#final-notes)
-18. [Some Image Demos](#some-image-demos)
+18. [Demo images and Videos](#some-image-demos)
 
 ----------
 
@@ -54,7 +55,21 @@ EmuHook lets you:
 -   Use a **common address model** for your overlays, race/crowd-control plugins, real-time event dispatchers, data miners, and debugging tools.
     
 
-Supported emulators (as of 0.5.8): **mGBA, VisualBoyAdvance, VBA-H, VBA-rr, BGB, Gambatte Speedrun, GSE, BizHawk (EmuHawk), DuckStation (PSX), melonDS (NDS), FCEUX (NES), SNES9x (SNES), Dolphin (GC/Wii)**. Some require **AHK64**.
+**Supported emulators (as of 0.5.8):** 
+
+ - mGBA (GB/GBC/GBA)
+ - VisualBoyAdvance-Link (GB/GBC/GBA)
+ - VBA-H (GB/GBC/GBA)
+ - VBA-rr (GB/GBC/GBA)
+ - BGB (GB/GBC)
+ - Gambatte Speedrun (GB/GBC)
+ - GSE (Game Boy Speedrun Emulator) (GB/GBC)
+ - BizHawk (EmuHawk) (GB/GBC/GBA)
+ - DuckStation (PSX)
+ - MelonDS (NDS)
+ - FCEUX (NES)
+ - SNES9x (SNES)
+ - Dolphin (GC/Wii)
 
 ----------
 
