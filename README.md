@@ -1,8 +1,9 @@
 
 
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
-> **Version:** 0.5.8  
+> **Version:** 0.6.0  
 > **Language:** AutoHotkey (v1, 32/64-bit)  
 > **Language:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
@@ -55,7 +56,7 @@ EmuHook lets you:
 -   Use a **common address model** for your overlays, race/crowd-control plugins, real-time event dispatchers, data miners, and debugging tools.
     
 
-**Supported emulators (as of 0.5.8):** 
+**Supported emulators (as of 0.6.0):** 
 
  - mGBA (GB/GBC/GBA)
  - VisualBoyAdvance-Link (GB/GBC/GBA)
@@ -70,6 +71,46 @@ EmuHook lets you:
  - FCEUX (NES)
  - SNES9x (SNES)
  - Dolphin (GC/Wii)
+ - Kega Fusion (Sega: SMS, MD/Genesis, 32x, SG-1000)
+
+
+**Supported Systems (as of 0.6.0):** 
+
+ - Nintendo Game Boy
+ - Nintendo Super Game Boy
+ - Nintendo Game Boy Color
+ - Nintendo Game Boy Advance
+ - Sony PlayStation 1
+ - Nintendo DS
+ - Nintendo Entertainment System
+ - Super Nintendo Entertainment System
+ - Nintendo GameCube
+ - Nintendo Wii
+ - Sega Master System
+ - Sega Mega Drive / Genesis
+ - Sega 32x
+ - Sega SG-1000
+
+----------
+**Emu-System Chart** 
+
+
+| Emulator                         | Nintendo Game Boy | Nintendo Super Game Boy | Nintendo Game Boy Color | Nintendo Game Boy Advance | Sony PlayStation 1 | Nintendo DS | Nintendo Entertainment System | Super Nintendo Entertainment System | Nintendo GameCube | Nintendo Wii | Sega Master System | Sega Mega Drive / Genesis | Sega 32x | Sega SG-1000 |
+| -------------------------------- | ----------------: | ----------------------: | ----------------------: | ------------------------: | -----------------: | ----------: | ----------------------------: | ----------------------------------: | ----------------: | -----------: | -----------------: | ------------------------: | -------: | -----------: |
+| mGBA                             |                 ✔ |                       — |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| VisualBoyAdvance-Link            |                 ✔ |                       — |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| VBA-H                            |                 ✔ |                       — |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| VBA-rr                           |                 ✔ |                       — |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| BGB                              |                 ✔ |                       — |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| Gambatte Speedrun                |                 ✔ |                       — |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| GSE (Game Boy Speedrun Emulator) |                 ✔ |                       — |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| BizHawk (EmuHawk)                |                 ✔ |                       — |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| DuckStation                      |                 — |                       — |                       — |                         — |                  ✔ |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| MelonDS                          |                 — |                       — |                       — |                         — |                  — |           ✔ |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| FCEUX                            |                 — |                       — |                       — |                         — |                  — |           — |                             ✔ |                                   — |                 — |            — |                  — |                         — |        — |            — |
+| SNES9x                           |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   ✔ |                 — |            — |                  — |                         — |        — |            — |
+| Dolphin                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 ✔ |            ✔ |                  — |                         — |        — |            — |
+| Kega Fusion                      |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  ✔ |                         ✔ |        ✔ |            ✔ |
 
 ----------
 
