@@ -95,7 +95,7 @@ EmuHook lets you:
 **Emu-System Chart** 
 
 
-| Emulator                         | Nintendo Game Boy | Nintendo Super Game Boy | Nintendo Game Boy Color | Nintendo Game Boy Advance | Sony PlayStation 1 | Nintendo DS | Nintendo Entertainment System | Super Nintendo Entertainment System | Nintendo GameCube | Nintendo Wii | Sega Master System | Sega Mega Drive / Genesis | Sega 32x | Sega SG-1000 |
+| Emulator                         | GB | SGB | GBC | GBA | PSX | NDS | NES | SNES | GC | Wii | SMS | MD | 32x | SG1000 |
 | -------------------------------- | ----------------: | ----------------------: | ----------------------: | ------------------------: | -----------------: | ----------: | ----------------------------: | ----------------------------------: | ----------------: | -----------: | -----------------: | ------------------------: | -------: | -----------: |
 | mGBA                             |                 ✔ |                       — |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
 | VisualBoyAdvance-Link            |                 ✔ |                       — |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
@@ -111,6 +111,7 @@ EmuHook lets you:
 | SNES9x                           |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   ✔ |                 — |            — |                  — |                         — |        — |            — |
 | Dolphin                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 ✔ |            ✔ |                  — |                         — |        — |            — |
 | Kega Fusion                      |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  ✔ |                         ✔ |        ✔ |            ✔ |
+
 
 ----------
 
