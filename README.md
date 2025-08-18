@@ -7,7 +7,7 @@
 > **Language:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
 
-[⭐ Examples Here!](#demos!)
+[⭐ Examples Here!](#demos)
 ----------
 
 ## Index
@@ -36,7 +36,7 @@
     - [Server.ahk](#3-serverahk)
 16. [Roadmap](#roadmap)
 17. [Final notes](#final-notes)
-18. [Demo images and Videos](#demos!)
+18. [Demo images and Videos](#demos)
 
 ----------
 
@@ -622,7 +622,7 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 
 ----------
 
-## Demos!
+## Demos
 
 ***[Game Boy Color]*** Pokemon Crystal - Multiplayer Proof of Concept
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/pokecrystal_multiplayer.png?raw=true)
