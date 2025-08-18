@@ -1,6 +1,7 @@
 
 
 
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
 > **Version:** 0.6.0  
@@ -14,7 +15,7 @@
 ## Index
 
 1. [TL;DR](#tldr)
-2. [Emulator - System Support](##emulator---system-support)
+2. [Emulator - System Support](#emulator---system-support)
 3. [Why I built it](#why-i-built-it)
 4. [Feature highlights](#feature-highlights)
 5. [Quick start](#quick-start)
