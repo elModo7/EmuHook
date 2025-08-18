@@ -385,8 +385,6 @@ emu.wmd(0x0032, 0x8034A0B2, 2, "ram") ; write big-endian halfword
 
 ## Robustness, pitfalls & recommendations (code review)
 
-> This section reflects a deeper read of the current `EmuHook.ahk` file you shared.
-
 1.  **Pointer-size consistency**
     
     -   `rm()` uses `"Ptr", MADDRESS` in `ReadProcessMemory` ✅
