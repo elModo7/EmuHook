@@ -38,8 +38,10 @@
 14. [Roadmap](#roadmap)
 15. [Final notes](#final-notes)
 16. [Demo images and Videos](#demos)
+17. [My projects using EmuHook](#my-projects-using-emuhook)
 
 ----------
+
 
 ## TL;DR
 
@@ -514,7 +516,7 @@ Perfect for **multi-user setups** (e.g., a Twitch channel with both an overlay a
 
 -   Finish **SRAM mappings** across all emulators.
     
--   Add support for PS2, PS3, WiiU, 3DS.
+-   Add support for PS2, PS3, WiiU, 3DS, PSP.
 
 -   Unify GBC/GBA on all capable emulators.
     
@@ -687,6 +689,62 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > [***I have a small demo video here***](https://youtu.be/T4YSzTgq_FU)
 ---
 I also made some ***achievement systems*** using EmuHook similar to **Retro Achievements** like in [***this demo***](https://youtu.be/IK_mhlc3ncU).
+
+---
+
+## My projects using EmuHook
+
+ - Pokémon Crystal: **Multiplayer** (You can see other players online real-time on the map)
+
+ - Metroid Prime Hunters: Online Player **Health + Points Tracker**.
+
+ - Kirby's Dream Land 2: **Animated Real-Time Overlay** (Godot).
+
+ - Resident Evil 1: **Auto Splitter** for speedrunning.
+
+ - Pokémon Crystal: **Pokemon Home Implementation** (MySQL + REST API Cloud Pokémon Storage System)
+ 
+ - Resident Evil 1: **Real-Time Map**.
+
+- Resident Evil 2: **Health + Inventory HUD**.
+
+ - Pokémon Crystal: **Data Mining Tools**.
+
+ - Wario Land 4: **Multiplayer + Touch Controls** (Similar to Mario Maker)
+
+- Resident Evil 2: **Achievement System**.
+
+ - Pokémon Crystal: **3D Pokémon Web Overlay**.
+
+ - Parasite Eve 2: **Enemy Health Tracker** (Commission).
+
+ - Pokémon Pinball, Perfect Dark: Emulator **Rumble Support**.
+
+ - Super Mario World: Real-Time **Web Stats Tracker** for OBS Overlays.
+
+- Pokémon Fire Red: Speedrun **Tracker**.
+
+- Dino Crisis 2: **Health HUD**.
+
+- Call of Cthulhu Dark Corners of the Earth: **Health + Inventory HUD**.
+
+- Resident Evil 1: **IOT Tuya Home RGB Light Automation** based on in-game Health Status.
+
+- Pokémon Fire Red: **Spinda Pattern** Generator.
+
+ - Eternal Darkness: Real-Time Player **Stats Tracker**.
+
+ - Pokémon Crystal: **Multi-Instance Shiny Hunting BOT**.
+
+ - Resident Evil 1: **Enemy Radar (Godot)**.
+
+ - Wario Land 4: **Speedrun Tracker**.
+
+ - Resident Evil 1: **Twitch Crowd Control** (Twitch chat can manage inventory, player health, enemies, camera status...)
+
+ - Use a **Wii Balance Board** to control the Shinyness of Wild Pokémons.
+
+ - Use a **TV Remote** to set in-game values for speedrun practice. 
 
 ---
 > *Some parts of this article have been auto-generated with AI because of lack of free time, however I have revised that the information given here meets the current version specification.*
