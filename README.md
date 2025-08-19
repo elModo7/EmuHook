@@ -3,9 +3,10 @@
 
 
 
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
-> **Version:** 0.6.0  
+> **Version:** 0.6.1  
 > **Language:** AutoHotkey (v1, 32/64-bit)  
 > **Language:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
@@ -62,25 +63,26 @@ EmuHook lets you:
 ## Emulator - System Support
 
 
-| Emulator                         | GB | SGB | GBC | GBA | PSX | NDS | NES | SNES | GC | Wii | SMS | MD | 32x | SG1000 |
-| -------------------------------- | ----------------: | ----------------------: | ----------------------: | ------------------------: | -----------------: | ----------: | ----------------------------: | ----------------------------------: | ----------------: | -----------: | -----------------: | ------------------------: | -------: | -----------: |
-| mGBA                             |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| VisualBoyAdvance-Link            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| VBA-H                            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| VBA-rr                           |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| BGB                              |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| Gambatte Speedrun                |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| GSE (Game Boy Speedrun Emulator) |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| BizHawk (EmuHawk)                |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| DuckStation                      |                 — |                       — |                       — |                         — |                  ✔ |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| MelonDS                          |                 — |                       — |                       — |                         — |                  — |           ✔ |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| FCEUX                            |                 — |                       — |                       — |                         — |                  — |           — |                             ✔ |                                   — |                 — |            — |                  — |                         — |        — |            — |
-| SNES9x                           |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   ✔ |                 — |            — |                  — |                         — |        — |            — |
-| Dolphin                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 ✔ |            ✔ |                  — |                         — |        — |            — |
-| Kega Fusion                      |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  ✔ |                         ✔ |        ✔ |            ✔ |
+| Emulator                         | GB | SGB | GBC | GBA | PSX | NDS | NES | SNES | GC | Wii | SMS | MD | 32x | SG1000 | PS2 |
+| -------------------------------- | ----------------: | ----------------------: | ----------------------: | ------------------------: | -----------------: | ----------: | ----------------------------: | ----------------------------------: | ----------------: | -----------: | -----------------: | ------------------------: | -------: | -----------: |-----------: |
+| mGBA                             |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| VisualBoyAdvance-Link            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| VBA-H                            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| VBA-rr                           |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| BGB                              |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| Gambatte Speedrun                |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| GSE (Game Boy Speedrun Emulator) |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| BizHawk (EmuHawk)                |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| DuckStation                      |                 — |                       — |                       — |                         — |                  ✔ |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| MelonDS                          |                 — |                       — |                       — |                         — |                  — |           ✔ |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| FCEUX                            |                 — |                       — |                       — |                         — |                  — |           — |                             ✔ |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |
+| SNES9x                           |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   ✔ |                 — |            — |                  — |                         — |        — |            — |            — |
+| Dolphin                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 ✔ |            ✔ |                  — |                         — |        — |            — |            — |
+| Kega Fusion                      |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  ✔ |                         ✔ |        ✔ |            ✔ |            — |
+| PCSX2                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            ✔ |
 
 
-**Supported emulators (as of 0.6.0):** 
+**Supported emulators (as of 0.6.1):** 
 
  - mGBA (GB/GBC/GBA)
  - VisualBoyAdvance-Link (GB/GBC/GBA)
@@ -96,16 +98,18 @@ EmuHook lets you:
  - SNES9x (SNES)
  - Dolphin (GC/Wii)
  - Kega Fusion (Sega: SMS, MD/Genesis, 32x, SG-1000)
+ - PCSX2 (PS2)
 
 
 
-**Supported Systems (as of 0.6.0):** 
+**Supported Systems (as of 0.6.1):** 
 
  - Nintendo Game Boy
  - Nintendo Super Game Boy
  - Nintendo Game Boy Color
  - Nintendo Game Boy Advance
  - Sony PlayStation 1
+ - Sony PlayStation 2
  - Nintendo DS
  - Nintendo Entertainment System
  - Super Nintendo Entertainment System
@@ -655,11 +659,15 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > 
 > [***Another demo video can be found here***](https://youtu.be/jLcLBPUUhfs)
 
+---
+
 ***[Game Boy Color]*** Pokemon Pinball - Adding Rumble Feature to unsupported emulators
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/pokepinball.png?raw=true)
 > This example reads constantly the status of the rumble and then through the XInput.dll library it makes your controller vibrate, no matter if the emulator supports vibration or not.
 > 
 > [***I have a small demo video here***](https://youtu.be/8nBiUiWHXtU)
+
+---
 
 ***[PC & PSX]*** Resident Evil 1 (1996) - Entity Radar, IGT, Inventory Viewer
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/re1_2.png?raw=true)
@@ -667,11 +675,15 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > 
 > [***I have a small demo video here***](https://youtu.be/cI4cBudCgV4)
 
+---
+
 ***[Game Boy Advance]*** Wario Land 4 - Web Tracker
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/wl4_web_tracker.png?raw=true)
 > This is one of my first ***Java branch testing*** that expose a ***REST API*** and via ***timed calls*** it does ***HTTP queries*** to the backend for gathering game info.
 > 
 > [***I have a small demo video here***](https://youtu.be/a_KyjHa1NiI)
+
+---
 
 ***[PSX]*** Parasite Eve 2 - SRT (Commission)
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/PE.png?raw=true)
@@ -679,6 +691,8 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > I was commissioned to do this for practicing the Parasite Eve II speedrun, it tracks current enemy HP.
 > 
 > [***I have a small demo video here***](https://youtu.be/M9eB8EqtNaU)
+
+---
 
 ***[PC]*** Resident Evil 1 (1996) - Twitch Crowd Control
 ![re1_crowd_control.png](https://github.com/elModo7/EmuHook/blob/main/example_images/re1_crowd_control.png?raw=true)
@@ -689,6 +703,7 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > [***I have a small demo video here***](https://youtu.be/T4YSzTgq_FU)
 ---
 I also made some ***achievement systems*** using EmuHook similar to **Retro Achievements** like in [***this demo***](https://youtu.be/IK_mhlc3ncU).
+[Here is a **PS2 demo** video using PCSX2 and Haunting Ground.](https://youtu.be/7HKhcyOGACk)
 
 ---
 
