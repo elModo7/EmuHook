@@ -2,6 +2,7 @@
 
 
 
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
 > **Version:** 0.6.0  
@@ -28,18 +29,15 @@
 8. [Emulator notes](#emulator-notes-how-base-pointers-are-found)
 9. [Real examples](#real-examples-you-can-paste)
 10. [Performance & design choices](#performance--design-choices)
-11. [Robustness, pitfalls & recommendations](#robustness-pitfalls--recommendations-code-review)
-12. [Building overlays & Twitch plugins](#building-overlays--twitch-plugins-on-top-of-emuhook)
-13. [Changelog](#changelog)
-14. [Extending EmuHook](#extending-emuhook-how-to-add-a-new-emulatorsystem)
-15. [Troubleshooting](#troubleshooting)
-16. [Supplementary Examples & Variants](#supplementary-examples--variants)
+11. [Building overlays & Twitch plugins](#building-overlays--twitch-plugins-on-top-of-emuhook)
+12. [Changelog](#changelog)
+13. [Supplementary Examples & Variants](#supplementary-examples--variants)
     - [Memory Viewer (GBC Example)](#1-memory-viewer-gbc-example)
     - [EmuHookHTTP](#2-emuhookhttp)
     - [Server.ahk](#3-serverahk)
-17. [Roadmap](#roadmap)
-18. [Final notes](#final-notes)
-19. [Demo images and Videos](#demos)
+14. [Roadmap](#roadmap)
+15. [Final notes](#final-notes)
+16. [Demo images and Videos](#demos)
 
 ----------
 
@@ -288,15 +286,15 @@ For **Dolphin (GC/Wii)**, `addrCnv()` auto-converts the `0x80000000` (and Wii’
     
 -   **VisualBoyAdvance (VBA)** — Uses static module offsets differing for **GBA vs GBC**.
     
--   **VBA-H** — GBC supported (WRAM + offset for RAM view), GBA intentionally blocked with a clear error.
+-   **VBA-H** — GBC supported (WRAM + offset for RAM view).
     
 -   **VBA-rr (svn480)** — GBC supported via WRAM-relative offset.
     
--   **BGB** — GBC supported (GBA appropriately blocked).
+-   **BGB** — GBC supported.
     
 -   **Gambatte Speedrun / GSE** — Resolves WRAM (e.g., `+0xD000` region) via pointer chain tuned for speedrun builds.
     
--   **BizHawk (EmuHawk)** — 64-bit. Uses an external helper `ThreadstackFinder` to locate a valid stack/anchor and resolve the emulated RAM region reliably. GBA is explicitly marked unsupported in this code path.
+-   **BizHawk (EmuHawk)** — 64-bit. Uses an external helper to locate a valid stack/anchor `ThreadStack0` and resolve the emulated RAM region reliably.
     
 -   **DuckStation (PSX)** — 64-bit pointer work (requires AHK64).
     
@@ -367,7 +365,7 @@ val := emu.rmpd(0x02000000, [0x1C, 0x8], 4, 2) ; e.g., final 2-byte value
 ```autohotkey
 emu := new EmuHook("ahk_exe Dolphin.exe", "gc")
 ; For Dolphin, endian is auto "b" and 0x8000_0000 space is auto converted.
-emu.wmd(0x0032, 0x8034A0B2, 2, "ram") ; write big-endian halfword
+emu.wmd(0x0032, 0x8034A0B2, 2) ; write big-endian halfword
 
 ```
 
@@ -375,7 +373,7 @@ emu.wmd(0x0032, 0x8034A0B2, 2, "ram") ; write big-endian halfword
 
 ## Performance & design choices
 
--   **OpenProcess once, reuse**: handle stays open until `Destroy`/script exit → lower overhead for high-frequency reads.
+-   **OpenProcess once, reuse**: handle stays open until `Destroy`/script exit → lower overhead for high-frequency reads (>~300.000 reads per second on a Intel i7 8700K).
     
 -   **No repeated PID lookups**: resolved once in `__New`.
     
@@ -383,69 +381,6 @@ emu.wmd(0x0032, 0x8034A0B2, 2, "ram") ; write big-endian halfword
     
 -   **Auto-mapping**: `detectAddressSpace` reduces boilerplate and mismatches when you switch emulators.
     
-
-----------
-
-## Robustness, pitfalls & recommendations (code review)
-
-1.  **Pointer-size consistency**
-    
-    -   `rm()` uses `"Ptr", MADDRESS` in `ReadProcessMemory` ✅
-        
-    -   `wm()` currently passes the address as `"UInt", MADDRESS`. On x64 this can truncate.  
-        **Recommendation:** Use `"Ptr", MADDRESS` in **both** RPM and WPM calls.
-        
-2.  **Minimal process rights**
-    
-    -   `OpenProcess` uses `2035711` (**PROCESS_ALL_ACCESS**). It works but is heavy-handed and may fail with stricter policies.
-        
-    -   **Recommendation:** Use the minimal rights set: `PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_QUERY_INFORMATION` (+ `SYNCHRONIZE` if needed). Define named constants for readability.
-        
-3.  **Return-value checks**
-    
-    -   `ReadProcessMemory/WriteProcessMemory` return a success flag; current code doesn’t check it.
-        
-    -   **Recommendation:** Capture the return and (optionally) `DllCall("GetLastError")` for diagnostics. Emit a friendly error or retry if the emulator is in transition.
-        
-4.  **Global state changes**
-    
-    -   `SetFormat, Integer, hex/D` is global and can affect callers.
-        
-    -   **Recommendation:** Prefer `Format()` / local formatting helpers to avoid global side effects.
-        
-5.  **BizHawk helper**
-    
-    -   The path expects `lib\ThreadstackFinder64.exe` at runtime and captures its output in a temp file.
-        
-    -   **Recommendation:** Validate existence, handle empty output robustly, and document the requirement prominently.
-        
-6.  **SRAM coverage**
-    
-    -   `getEmulatorSRAM()` currently implements a **VBA+GBC** path; other emulators’ SRAM logic is TODO.
-        
-    -   **Recommendation:** Either complete or clearly state SRAM availability per emulator in docs (see the table below).
-        
-7.  **Multiple instances UX**
-    
-    -   `checkRunningEmulator()` returns `"multiple"` when more than one emulator matches.
-        
-    -   **Recommendation:** When that happens, surface the PIDs via `WinGet List` to help the user choose, or accept a **window title substring** to disambiguate.
-        
-8.  **Type semantics**
-    
-    -   Helpers read **unsigned integers**; some games use **signed** or **floats**.
-        
-    -   **Recommendation:** Add typed readers: `rm8s/rm16s/rm32s`, `rmf32/rmf64` and their write counterparts.
-        
-9.  **Safety**
-    
-    -   A gentle reminder in docs: **Do not use on online games** / anti-cheat protected titles. Prefer attaching with user privileges (no admin) unless required.
-        
-10.  **Unit tests & CI**
-    
-    -   Provide a tiny harness (start emulator with a known ROM & state, read a constant) to sanity-check each mapping on new releases.
-        
-
 ----------
 
 ## Building overlays & Twitch plugins on top of EmuHook
@@ -486,6 +421,10 @@ return
 
 ## Changelog
 
+-   **0.6.0** — Add support for Sega Mega Drive, 32x. Minor improvements to dynamic read system.
+
+-   **0.5.9** — Add support for some Sega systems through Kega Fusion (SG-1000, SMS)
+
 -   **0.5.8** — PC game hooking (not just emulators)
     
 -   **0.5.7** — Major GC/Wii upgrades; inner pointers usable with unconverted addresses
@@ -502,49 +441,6 @@ return
     
 -   **0.3.x** — BizHawk, Gambatte, VBA variants; multi-instance; SRAM tracking
     
-
-----------
-
-## Extending EmuHook (how to add a new emulator/system)
-
-1.  **Find the RAM base** in your emulator:
-    
-    -   Use CE/IDA or the emulator’s symbols. Often there’s a global like `g_ram` reachable via a stable module offset + pointer chain.
-        
-2.  **Add mapping** to:
-    
-    -   `getEmulatorRAM()` — main RAM base.
-        
-    -   `getEmulatorWorkRAM()` and/or `getEmulatorSRAM()` if applicable.
-        
-3.  **Define address spaces** in `detectAddressSpace()` (ranges for WRAM/SRAM/IRAM).
-    
-4.  **Handle endian/addr space quirks**:
-    
-    -   If big-endian (e.g., PPC), call `this.setEndian("b")`.
-        
-    -   If virtual ranges (e.g., `0x8000_0000`), implement `addrCnv()` logic.
-        
-5.  **Guardrails**:
-    
-    -   Validate `romType` and emit clear errors if unsupported.
-        
-    -   Keep all pointer sizes `"Ptr"` to be x86/x64-safe.
-        
-
-----------
-
-## Troubleshooting
-
--   **Nothing reads / 0 values:** Wrong `romType`, emulator build changed, or attaching to the wrong process. Try PID attach.
-    
--   **64-bit access errors:** Ensure **AutoHotkeyU64** for BizHawk, DuckStation, Dolphin, melonDS.
-    
--   **Writes have no effect:** Game state may be mirrored/cached. Try writing to the canonical region (WRAM vs IRAM) or follow the live pointer chain (`rmp`).
-    
--   **SRAM reads look wrong:** Not all emulators’ SRAM mapping is implemented yet; use WRAM where possible or add a mapping.
-    
-
 ---
 
 ## Supplementary Examples & Variants
@@ -564,17 +460,6 @@ A standalone **real-time memory viewer** for Game Boy Color titles, using EmuHoo
 - Displays values in a scrolling or fixed window for debugging/hacking.
 - Auto-refresh loop for live updates.
 
-**Snippet:**
-```autohotkey
-emu := new EmuHook("ahk_exe mGBA.exe", "gbc")
-Loop {
-    val := emu.rmd(0xC000, 1, "ram") ; read from WRAM
-    ToolTip, Value @ C000: % Format("0x{:02X}", val)
-    Sleep 100
-}
-
-```
-
 **Usage:**  
 Great for **reverse-engineering** games, finding health/score addresses, or monitoring event triggers.
 
@@ -591,27 +476,17 @@ Extends EmuHook into a **local HTTP API**, allowing overlays, scripts, or remote
     
 -   Responds with JSON for memory reads, accepts POST for writes.
     
--   Can be polled by OBS browser sources, Node.js servers, or even Twitch bots.
+-   Can be polled by OBS browser sources, Node.js servers, or Twitch bots.
     
 -   Supports **multiple endpoints** like `/read?addr=...` and `/write`.
     
-
-**Snippet:**
-
-```autohotkey
-; Example GET request:  /read?addr=0x02037D00&bytes=2&block=wram
-emu := new EmuHook("ahk_exe mGBA.exe", "gba")
-val := emu.rmd(addr, bytes, block)
-SendResponse("{""value"": " val "}")
-
-```
 
 **Usage:**  
 Ideal for **cross-language integrations** (e.g., JS overlays), race coordinators, or crowd-control tools.
 
 ----------
 
-### 3. EmuHookServer.ahk
+### 3. EmuHookServer
 
 **Purpose:**  
 A **centralized service** that runs EmuHook and exposes its capabilities over the network, acting as a hub for multiple tools to interact with the emulator simultaneously.
@@ -627,41 +502,30 @@ A **centralized service** that runs EmuHook and exposes its capabilities over th
     -   Persistent memory watchers
         
 -   Acts as a bridge between local emulator memory and multiple remote subscribers.
+- Reads config from a file and exposes those RAM addresses via a specific TCP port.
     
-
-**Snippet:**
-
-```autohotkey
-#Include EmuHookHTTP.ahk
-server := new EmuHookServer("gba", 8080)
-server.start()
-
-```
 
 **Usage:**  
 Perfect for **multi-user setups** (e.g., a Twitch channel with both an overlay and a chat bot reading/writing memory in real time).
 
 ----------
 
-**Note:**  
-All these scripts depend on the EmuHook core library for actual memory access. Their value lies in **wrapping and extending** it for specific use-cases: visual debugging, HTTP-based overlays, or networked integrations.
-
-----------
-
-## Roadmap
+## TO-DO
 
 -   Finish **SRAM mappings** across all emulators.
     
--   Add **typed readers/writers** (signed, floats).
+-   Add support for PS2, PS3, WiiU, 3DS.
+
+-   Unify GBC/GBA on all capable emulators.
     
--   Migrate to **AHK v2**.
+-   Migrate to **AHK v2** ?.
     
 
 ----------
 
 ## Final notes
 
-EmuHook’s power lies in its **consistency**: once you target an address for one emulator, you can usually switch emulators without changing your overlay logic. It’s a solid foundation for **interactive, real-time** tooling—speedrunning races, Twitch crowd-control, data mining, or just deep game debugging.
+EmuHook’s power lies in its **consistency**: once you target an address for one emulator, you can usually switch emulators without changing your overlay logic. It’s a solid foundation for **interactive, real-time** tooling—speedrunning races, Twitch crowd-control, data mining, automation frameworks or just deep game debugging.
 
 ----------
 
