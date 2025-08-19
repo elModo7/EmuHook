@@ -55,7 +55,7 @@ EmuHook lets you:
     
 -   **Follow multi-level pointer chains**.
     
--   Use a **common address model** for your overlays, race/crowd-control plugins, real-time event dispatchers, data miners, and debugging tools.
+-   Use a **common address model** for your overlays, automated race trackers, autosplitters, crowd-control plugins, real-time event dispatchers, data mining tools, bot automation frameworks, debugging tools and many more.
     
 
 ----------
@@ -98,6 +98,7 @@ EmuHook lets you:
  - Kega Fusion (Sega: SMS, MD/Genesis, 32x, SG-1000)
 
 
+
 **Supported Systems (as of 0.6.0):** 
 
  - Nintendo Game Boy
@@ -114,6 +115,7 @@ EmuHook lets you:
  - Sega Mega Drive / Genesis
  - Sega 32x
  - Sega SG-1000
+ - Native PC Games
 ----------
 
 ## Why I built it
@@ -146,7 +148,7 @@ Emulator memory tooling is traditionally **per-emulator and per-system**. That f
 ## Quick start
 
 ```autohotkey
-#Include %A_ScriptDir%\EmuHook.ahk
+#Include <EmuHook>
 
 ; Attach to mGBA (GBA)
 emu := new EmuHook("ahk_exe mGBA.exe", "gba")
