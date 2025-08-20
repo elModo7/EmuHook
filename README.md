@@ -185,7 +185,7 @@ emu := new EmuHook(exe, "gba")
 
 ```
 
-> **Tip:** Some emulators—**BizHawk, DuckStation, Dolphin, melonDS**—require **AutoHotkeyU64** due to 64-bit pointers.
+> **Tip:** Some emulators—**BizHawk, DuckStation, Dolphin, melonDS, PCSX2**—require **AutoHotkeyU64** due to 64-bit pointers.
 
 ----------
 
@@ -199,7 +199,7 @@ emu := new EmuHook("ahk_pid 1234", "gbc")
 
 ```
 
--   `romType` recognized in code paths: **gbc, gb, gba, nds/ds, nes, snes/sfc, gc, wii, pc** (exact checks vary per emulator branch).
+-   `romType` recognized in code paths: **gbc, gb, gba, nds/ds, nes, snes/sfc, gc, wii, ps2, psx, sg-1000, sms, md, pc** (exact checks vary per emulator).
     
 -   On construct:
     
@@ -285,45 +285,7 @@ For **Dolphin (GC/Wii)**, `addrCnv()` auto-converts the `0x80000000` (and Wii’
 
 ## Real examples you can paste
 
-### 1) Overlay snippet (polling + event)
-
-```autohotkey
-#NoEnv
-#SingleInstance force
-#Include %A_ScriptDir%\EmuHook.ahk
-
-emu := new EmuHook("ahk_exe mGBA.exe", "gba")
-
-Gui, +AlwaysOnTop +ToolWindow -Caption
-Gui, Font, s12, Consolas
-Gui, Add, Text, vT w200, Waiting…
-Gui, Show, x10 y10 NoActivate, EmuOverlay
-
-lastCoins := -1
-
-SetTimer, Tick, 50
-return
-
-Tick:
-{
-    ; Example: read 16-bit at 0x0203A4B0 (WRAM) – replace with your game’s address
-    coins := emu.rmd(0x0203A4B0, 2, "wram")
-
-    if (coins != lastCoins) {
-        GuiControl,, T, Coins: %coins%
-        SoundBeep, 1000, 50
-        lastCoins := coins
-    }
-}
-return
-
-Esc::  ; exit
-emu.Destroy()
-ExitApp
-
-```
-
-### 2) Following a pointer chain
+### 1) Following a pointer chain
 
 ```autohotkey
 ; Follow base + [0x28, 0x30, 0x43] then read a 4-byte value at the final address
@@ -334,7 +296,7 @@ val := emu.rmpd(0x02000000, [0x1C, 0x8], 4, 2) ; e.g., final 2-byte value
 
 ```
 
-### 3) Dolphin (GC/Wii) big-endian write
+### 2) Dolphin (GC/Wii) big-endian write
 
 ```autohotkey
 emu := new EmuHook("ahk_exe Dolphin.exe", "gc")
@@ -359,36 +321,11 @@ emu.wmd(0x0032, 0x8034A0B2, 2) ; write big-endian halfword
 
 ## Building overlays & Twitch plugins on top of EmuHook
 
--   **Overlay UI:** Use AHK GUIs or offload to a browser source via local WebSocket/HTTP (e.g., AHK ↔ Node/WS). Poll memory at 30–60 Hz; debounce UI updates.
+-   **Overlay UI:** Use AHK GUIs or offload to a browser source via local WebSocket/HTTP (e.g., AHK ↔ Node/WS).
     
--   **Event system:** Wrap reads in a tiny dispatcher:
+-   **Event system:** Wrap reads in a tiny dispatcher.
     
-
-```autohotkey
-class EventBus {
-    __New(){ this.prev := {} }
-    onChange(key, val) {
-        if (this.prev[key] != val) {
-            this.prev[key] := val
-            return true
-        }
-        return false
-    }
-}
-
-bus := new EventBus()
-
-SetTimer, Tick, 33
-Tick:
-hp := emu.rmd(0x02037D00, 2, "wram")
-if (bus.onChange("hp", hp)) {
-    ; fire overlay update, play sound, send to chat, etc.
-}
-return
-
-```
-
--   **Races/crowd control:** Expose a simple command bus (e.g., read chat → translate into `wmd()` writes). Always **validate ranges** before writing.
+-   **Races/crowd control:** Expose a simple command bus (e.g., read chat → translate into `wmd()` writes).
     
 
 ----------
@@ -490,7 +427,7 @@ Perfect for **multi-user setups** (e.g., a Twitch channel with both an overlay a
 
 -   Finish **SRAM mappings** across all emulators.
     
--   Add support for PS2, PS3, WiiU, 3DS, PSP.
+-   Add support for PS3, WiiU, 3DS, PSP.
 
 -   Unify GBC/GBA on all capable emulators.
     
