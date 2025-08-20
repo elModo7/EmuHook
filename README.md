@@ -281,38 +281,7 @@ emu.Destroy()      ; closes handle
     
 
 For **Dolphin (GC/Wii)**, `addrCnv()` auto-converts the `0x80000000` (and Wii’s `0x8E000000`) spaces to process addresses.
-
-----------
-
-## Emulator notes (how base pointers are found)
-
-> The class has per-emulator logic in `getEmulatorRAM() / getEmulatorWorkRAM() / getEmulatorSRAM()`.
-
--   **mGBA** — Resolves via a module-relative pointer chain depending on GBA/GBC).
-    
--   **VisualBoyAdvance (VBA)** — Uses static module offsets differing for **GBA vs GBC**.
-    
--   **VBA-H** — GBC supported (WRAM + offset for RAM view).
-    
--   **VBA-rr (svn480)** — GBC supported via WRAM-relative offset.
-    
--   **BGB** — GBC supported.
-    
--   **Gambatte Speedrun / GSE** — Resolves WRAM (e.g., `+0xD000` region) via pointer chain tuned for speedrun builds.
-    
--   **BizHawk (EmuHawk)** — 64-bit. Uses an external helper to locate a valid stack/anchor `ThreadStack0` and resolve the emulated RAM region reliably.
-    
--   **DuckStation (PSX)** — 64-bit pointer work (requires AHK64).
-    
--   **melonDS (NDS)** — Validates `romType` (nds/ds) and resolves ARM9 RAM; 64-bit.
-    
--   **FCEUX (NES)**, **SNES9x (SNES/SFC)** — Simple module + offset or short chain.
-    
--   **Dolphin (GC/Wii)** — Reads an 8-byte pointer from (Dolphin 2506a), then sets **big-endian** and enables address conversion for the `0x80000000` space (Wii support includes the second memory window at `0x8E000000`).
-    
-
-> Each mapping is **emulator-build specific**. If a build updates, these offsets can shift.
-
+ 
 ----------
 
 ## Real examples you can paste
@@ -426,6 +395,8 @@ return
 ----------
 
 ## Changelog
+
+-   **0.6.1** - Add support for Sony PlayStation 2 via PCSX2.
 
 -   **0.6.0** — Add support for Sega Mega Drive, 32x. Minor improvements to dynamic read system.
 
