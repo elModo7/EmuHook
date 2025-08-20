@@ -427,7 +427,9 @@ Perfect for **multi-user setups** (e.g., a Twitch channel with both an overlay a
 
 -   Finish **SRAM mappings** across all emulators.
     
--   Add support for PS3, WiiU, 3DS, PSP.
+-   Add support for N64, PS3, WiiU, 3DS, PSP.
+
+-   Create search tool example.
 
 -   Unify GBC/GBA on all capable emulators.
     
