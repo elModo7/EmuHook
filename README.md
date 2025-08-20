@@ -617,6 +617,8 @@ I also made some ***achievement systems*** using EmuHook similar to **Retro Achi
 
 [Here is a **PS2 demo** video using PCSX2 and Haunting Ground.](https://youtu.be/7HKhcyOGACk)
 
+[Here is a **N64 demo** video using Project64 and Super Mario 64.](https://youtu.be/Q7lDY0NP6_g)
+
 ---
 
 ## My projects using EmuHook
