@@ -3,7 +3,7 @@
 
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
-> **Version:** 0.6.2  
+> **Version:** 0.6.3  
 > **Language:** AutoHotkey (v1, 32/64-bit)  
 > **Language:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
@@ -79,7 +79,7 @@ EmuHook lets you:
 | Project64                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            ✔ |
 
 
-**Supported emulators (as of 0.6.2):** 
+**Supported emulators (as of 0.6.3):** 
 
  - mGBA (GB/GBC/GBA)
  - VisualBoyAdvance-Link (GB/GBC/GBA)
@@ -100,7 +100,7 @@ EmuHook lets you:
 
 
 
-**Supported Systems (as of 0.6.2):** 
+**Supported Systems (as of 0.6.3):** 
 
  - Nintendo Game Boy
  - Nintendo Super Game Boy
@@ -332,7 +332,7 @@ emu.wmd(0x0032, 0x8034A0B2, 2) ; write big-endian halfword
 
 ## Changelog
 
--   **0.6.2** - Add support for Nintendo64 via Project64 & add functions to handle module base address resolution.
+-   **0.6.2 - 0.6.3** - Add support for Nintendo64 via Project64 & add functions to handle module base address resolution & dynamic n64 address resolution.
 
 -   **0.6.1** - Add support for Sony PlayStation 2 via PCSX2.
 
