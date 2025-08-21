@@ -13,7 +13,7 @@ output := "Emulator: " emuName
 output .= "`nHealth: " emu.rmd(0x4301D6FB, 1) ; Health
 MsgBox % output
 
-emu.wmd(12, 0x4301D6FB) ; Health set to 8
+emu.wmd(8, 0x4301D6FB) ; Health set to 8
 output := "Health: " emu.rmd(0x4301D6FB, 1)
 MsgBox % output
 return
