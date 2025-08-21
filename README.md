@@ -5,7 +5,7 @@
 > **Language:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
 
-[⭐ Examples Here!](#demos)
+[⭐ Example videos here!](#demos)
 ----------
 
 ## Index
