@@ -1,3 +1,4 @@
+
 ![EmuHook](https://github.com/elModo7/EmuHook/blob/main/example_images/EmuHook.jpg?raw=true)
 
 # EmuHook — a unified memory-hooking library for emulators and PC games
@@ -481,6 +482,8 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 ## Demos
 
 #### ***[Wii, GBC, PSX, NDS & SNES]*** [🎬Real-Time RAM Viewer & Editor](https://youtu.be/Vbob-0w0Afk)
+[![](https://i9.ytimg.com/vi_webp/Vbob-0w0Afk/mqdefault.webp?v=68a8c4fb&sqp=COiTo8UG&rs=AOn4CLC9fYChd6u-S77hruHXwIbzRhk2Pg)](https://youtu.be/Vbob-0w0Afk)
+
 ---
 
 ***[Game Boy Color]*** Pokemon Crystal - Multiplayer Proof of Concept
@@ -489,9 +492,10 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 > 
 > I made a long video explaining and testing this here.
 > 
-> [***A small demo video can be found here***      ![](https://i.ytimg.com/vi/CU6lkQsZhMY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAu3t0CMYSFXpYEl-sz8OcnVY71tA)](https://www.youtube.com/watch?v=CU6lkQsZhMY)
+> [***A small demo video can be found here***  
+>     ![](https://i.ytimg.com/vi/CU6lkQsZhMY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAu3t0CMYSFXpYEl-sz8OcnVY71tA)](https://www.youtube.com/watch?v=CU6lkQsZhMY)
 > 
-> [***And here I have another demo video no its usage***](https://youtu.be/fGthSATYbsU?si=XqFgtgnCzVnLQYpW)
+> [***And here I have another demo video showcasing its usage***](https://youtu.be/fGthSATYbsU?si=XqFgtgnCzVnLQYpW)
 ---
 
 ***[Super Nintendo]*** Super Mario World - Web Tracker **(Java branch of EmuHook)**
