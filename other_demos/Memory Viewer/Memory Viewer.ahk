@@ -1,4 +1,4 @@
-version := "0.2.1"
+﻿version := "0.2.2"
 #NoEnv
 #SingleInstance, Force
 SetBatchlines -1
@@ -70,14 +70,14 @@ iterateTable:
     {
         LV_GetText(rowName, A_Index, 1)
         LV_GetText(rowAddress, A_Index, 2)
+        memoryValue := emu.rmd(rowAddress)
         if(memData.addresses[rowName].options){
-            memoryValue := emu.rmd(rowAddress)
             if (memData.addresses[rowName].options[memoryValue])
                 LV_Modify(A_Index,,,,,memData.addresses[rowName].options[memoryValue])
             else
                 LV_Modify(A_Index,,,,,memData.addresses[rowName].options["default"])
         }else{
-            LV_Modify(A_Index,,,,,emu.rmd(rowAddress))
+            LV_Modify(A_Index,,,,,memoryValue)
         }
     }
 return
