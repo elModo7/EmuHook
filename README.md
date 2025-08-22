@@ -29,10 +29,10 @@
 10. [Building overlays & Twitch plugins](#building-overlays--twitch-plugins-on-top-of-emuhook)
 11. [Changelog](#changelog)
 12. [Supplementary Examples & Variants](#supplementary-examples--variants)
-    - [Memory Viewer (GBC Example)](#1-memory-viewer-gbc-example)
-    - [EmuHookHTTP](#2-emuhookhttp)
-    - [Server.ahk](#3-serverahk)
-13. [Roadmap](#roadmap)
+    - [Memory Viewer](#memory-viewer-gbc-example)
+    - [EmuHookHTTP](#emuhookhttp)
+    - [EmuHookServer](#emuhookserver)
+13. [ TO-DOs](#to-do)
 14. [Final notes](#final-notes)
 15. [Demo images and Videos](#demos)
 16. [My projects using EmuHook](#my-projects-using-emuhook)
@@ -344,6 +344,10 @@ emu.wmd(0x0032, 0x8034A0B2, 2) ; write big-endian halfword
 
 ## Changelog
 
+-   **0.6.7** - Add support for Nintendo 3DS via Azahar (preliminar, help needed).
+
+-   **0.6.6** - Add support for Sony PlayStation 3 via RPCS3.
+
 -   **0.6.5** - Add support for Nintendo WiiU via Cemu.
 
 -   **0.6.4** - Add support for Sony PlayStation Portable via PPSSPP.
@@ -380,7 +384,7 @@ These examples are built on the EmuHook core library described above, demonstrat
 
 ---
 
-### 1. Memory Viewer (GBC Example)
+### Memory Viewer (GBC Example)
 
 **Purpose:**  
 A standalone **real-time memory viewer** for Game Boy Color titles, using EmuHook’s address-space detection to read live game data.
@@ -396,7 +400,7 @@ Great for **reverse-engineering** games, finding health/score addresses, or moni
 
 ----------
 
-### 2. EmuHookHTTP
+### EmuHookHTTP
 
 **Purpose:**  
 Extends EmuHook into a **local HTTP API**, allowing overlays, scripts, or remote services to query/write emulator memory without running AHK on the same machine.
@@ -417,7 +421,7 @@ Ideal for **cross-language integrations** (e.g., JS overlays), race coordinators
 
 ----------
 
-### 3. EmuHookServer
+### EmuHookServer
 
 **Purpose:**  
 A **centralized service** that runs EmuHook and exposes its capabilities over the network, acting as a hub for multiple tools to interact with the emulator simultaneously.
