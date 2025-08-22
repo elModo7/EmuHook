@@ -11,6 +11,13 @@
 [⭐ Example videos here!](#demos)
 ----------
 
+> [!IMPORTANT] 
+> EmuHook is not public yet, however I will be posting updates and demos here.
+> 
+> My free time IRL has gone quite tighter than I expected and I am not 100% comfortable having this out with no free time to keep track/support it.
+
+---
+
 ## Index
 
 1. [TL;DR](#tldr)
