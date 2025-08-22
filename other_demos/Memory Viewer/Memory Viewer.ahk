@@ -1,4 +1,4 @@
-﻿version := "0.2"
+version := "0.2.1"
 #NoEnv
 #SingleInstance, Force
 SetBatchlines -1
@@ -53,7 +53,7 @@ SetFormat, integer, d
 
 for addressKey, address in memData.addresses
 {
-    LV_Add("Icon1", addressKey, address.address, address.bytes, "")
+    LV_Add("Icon1", addressKey, address.address, address.bytes ? address.bytes : 1, "")
 }
 
 LV_ModifyCol()
