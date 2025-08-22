@@ -1,3 +1,4 @@
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
 > **Version:** 0.6.7  
@@ -701,6 +702,23 @@ I also made some ***achievement systems*** using EmuHook similar to **Retro Achi
  - Use a **Wii Balance Board** to control the Shinyness of Wild Pokémons.
 
  - Use a **TV Remote** to set in-game values for speedrun practice. 
+
+---
+
+## Tools Used
+
+This project would be nothing without people contributing to theese tools.
+
+ - Each and every emulator.
+ - [Cheat Engine.](https://github.com/cheat-engine/cheat-engine)
+ - [Ghidra.](https://github.com/NationalSecurityAgency/ghidra)
+ - [AutoHotkey](https://github.com/AutoHotkey/AutoHotkey/tree/v1.1) & theese libs:
+	 - [socket.ahk](https://github.com/G33kDude/Socket.ahk)
+	 - [cJSON.ahk](https://github.com/G33kDude/cJson.ahk/tree/main)
+	 - [AHKHTTP.ahk](https://github.com/zhamlin/AHKhttp)
+ - [Java](https://github.com/openjdk), specially JNI.
+ - [Websockify.](https://github.com/novnc/websockify)
+ - [Scite4Autohotkey.](https://github.com/fincs/SciTE4AutoHotkey)
 
 ---
 > *Some parts of this article have been auto-generated with AI because of lack of free time, however I have revised that the information given here meets the current version specification.*
