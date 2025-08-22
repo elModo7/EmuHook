@@ -1,5 +1,3 @@
-
-
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
 > **Version:** 0.6.7  
@@ -197,7 +195,7 @@ emu := new EmuHook(exe, "gba")
 
 ```
 
-> **Tip:** Some emulators—**BizHawk, DuckStation, Dolphin, melonDS, PCSX2**—require **AutoHotkeyU64** due to 64-bit pointers.
+> **Tip:** Some emulators—**BizHawk, DuckStation, Dolphin, melonDS, PCSX2, RPCS3, Cemu, Azahar, PPSSPP**—require **AutoHotkeyU64** due to 64-bit pointers.
 
 ----------
 
