@@ -1,3 +1,4 @@
+![EmuHook](https://github.com/elModo7/EmuHook/blob/main/example_images/EmuHook.jpg?raw=true)
 
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
@@ -471,6 +472,9 @@ EmuHook’s power lies in its **consistency**: once you target an address for on
 ----------
 
 ## Demos
+
+#### ***[Wii, GBC, PSX, NDS & SNES]*** [🎬Real-Time RAM Viewer & Editor](https://youtu.be/Vbob-0w0Afk)
+---
 
 ***[Game Boy Color]*** Pokemon Crystal - Multiplayer Proof of Concept
 ![alt text](https://github.com/elModo7/EmuHook/blob/main/example_images/pokecrystal_multiplayer.png?raw=true)

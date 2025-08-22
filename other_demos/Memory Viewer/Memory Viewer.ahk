@@ -70,7 +70,9 @@ iterateTable:
     {
         LV_GetText(rowName, A_Index, 1)
         LV_GetText(rowAddress, A_Index, 2)
-        memoryValue := emu.rmd(rowAddress)
+        LV_GetText(rowBytes, A_Index, 3)
+        
+        memoryValue := emu.rmd(rowAddress, rowBytes*1) ; wtf ahk, make sure it's an int?
         if(memData.addresses[rowName].options){
             if (memData.addresses[rowName].options[memoryValue])
                 LV_Modify(A_Index,,,,,memData.addresses[rowName].options[memoryValue])
@@ -92,6 +94,8 @@ if (A_GuiEvent = "DoubleClick")
     gosub, showRamEditGui
 }
 return
+
+q::MsgBox % emu.rmd(rowAddress, rowBytes)
 
 showRamEditGui:
     SetTimer, iterateTable, Off

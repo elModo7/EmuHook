@@ -1,7 +1,7 @@
 ﻿; OS Version ...: Windows 10 x64
 ;@Ahk2Exe-SetName EmuHook Memory Viewer
 ;@Ahk2Exe-SetDescription Dynamic memory viewer for Console Emulators and PC Games.
-;@Ahk2Exe-SetVersion 1.0.0
+;@Ahk2Exe-SetVersion 1.0.1
 ;@Ahk2Exe-SetCopyright Copyright (c) 2025`, elModo7
 ;@Ahk2Exe-SetOrigFilename EmuHook Memory Viewer.exe
 ; INITIALIZE
@@ -11,7 +11,7 @@
 #Persistent
 SetWorkingDir, %A_ScriptDir%
 SetBatchLines, -1
-global version := "1.0.0"
+global version := "1.0.1"
 DetectHiddenWindows, On
 ListLines, Off
 #Include %A_ScriptDir%\..\..\lib\EmuHook.ahk
@@ -51,11 +51,10 @@ neutron.Load("Memory_viewer.html")
 neutron.Gui("+LabelNeutron")
 
 if (configPath == "") {
-	if (FileExist("profiles/default.json"))
-		loadConfig("profiles/default.json")
+	if (FileExist("config.json"))
+		loadConfig("config.json")
 	else {
-		FileCreateDir, profiles
-		MsgBox 0x10, Error, config.json file not found!`n`nIt must be placed under %A_ScriptDir%\profiles\default.json
+		MsgBox 0x10, Error, config.json file not found!`n`nIt must be placed under %A_ScriptDir%\default.json
 		ExitApp
 	}
 }
@@ -67,6 +66,7 @@ if(!InStr(memData.processName, "ahk_exe "))
     memData.processName := "ahk_exe " memData.processName
 }
 if (!WinExist(memData.processName)) {
+	MsgBox % memData.processName
     MsgBox 0x10, Process not found, The target process is not running or was not detected properly.`n`nMake sure target process is not minimized and/or run EmuHook as admin.
     ExitApp
 }
