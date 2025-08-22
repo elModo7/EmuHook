@@ -35,6 +35,7 @@
 14. [Final notes](#final-notes)
 15. [Demo images and Videos](#demos)
 16. [My projects using EmuHook](#my-projects-using-emuhook)
+17. [Tools used](#tools-used)
 
 ----------
 
