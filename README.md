@@ -1,6 +1,7 @@
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
-> **Version:** 0.6.5  
+> **Version:** 0.6.7  
 > **Language:** AutoHotkey v1
 > **HTTP REST API Bridge:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
@@ -57,29 +58,31 @@ EmuHook lets you:
 ## Emulator - System Support
 
 
-| Emulator                         | GB | SGB | GBC | GBA | PSX | NDS | NES | SNES | GC | Wii | SMS | MD | 32x | SG1000 | PS2 | N64 | WiiU | PSP |
-| -------------------------------- | ----------------: | ----------------------: | ----------------------: | ------------------------: | -----------------: | ----------: | ----------------------------: | ----------------------------------: | ----------------: | -----------: | -----------------: | ------------------------: | -------: | -----------: |-----------: |-----------: |-----------: |-----------: |
-| mGBA                             |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| VisualBoyAdvance-Link            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| VBA-H                            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| VBA-rr                           |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| BGB                              |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| Gambatte Speedrun                |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
+| Emulator                         | GB | SGB | GBC | GBA | PSX | NDS | NES | SNES | GC | Wii | SMS | MD | 32x | SG1000 | PS2 | N64 | WiiU | PSP | PS3 | 3DS |
+| -------------------------------- | ----------------: | ----------------------: | ----------------------: | ------------------------: | -----------------: | ----------: | ----------------------------: | ----------------------------------: | ----------------: | -----------: | -----------------: | ------------------------: | -------: | -----------: |-----------: |-----------: |-----------: |-----------: |-----------: |-----------: |
+| mGBA                             |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| VisualBoyAdvance-Link            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| VBA-H                            |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| VBA-rr                           |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| BGB                              |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| Gambatte Speedrun                |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
 | GSE (Game Boy Speedrun Emulator) |                 ✔ |                       ✔ |                       ✔ |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| BizHawk (EmuHawk)                |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| DuckStation                      |                 — |                       — |                       — |                         — |                  ✔ |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| MelonDS                          |                 — |                       — |                       — |                         — |                  — |           ✔ |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| FCEUX                            |                 — |                       — |                       — |                         — |                  — |           — |                             ✔ |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| SNES9x                           |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   ✔ |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| Dolphin                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 ✔ |            ✔ |                  — |                         — |        — |            — |            — |            — |            — |            — |
-| Kega Fusion                      |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  ✔ |                         ✔ |        ✔ |            ✔ |            — |            — |            — |            — |
-| PCSX2                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            ✔ |            — |            — |            — |
-| Project64                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            ✔ |            — |            — |
-| Cemu                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            ✔ |            — |
-| PPSSPP                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            ✔ |
+| BizHawk (EmuHawk)                |                 ✔ |                       ✔ |                       ✔ |                         ✔ |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| DuckStation                      |                 — |                       — |                       — |                         — |                  ✔ |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| MelonDS                          |                 — |                       — |                       — |                         — |                  — |           ✔ |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| FCEUX                            |                 — |                       — |                       — |                         — |                  — |           — |                             ✔ |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| SNES9x                           |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   ✔ |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| Dolphin                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 ✔ |            ✔ |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| Kega Fusion                      |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  ✔ |                         ✔ |        ✔ |            ✔ |            — |            — |            — |            — |            — |            — |
+| PCSX2                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            ✔ |            — |            — |            — |            — |            — |
+| Project64                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            ✔ |            — |            — |            — |            — |
+| Cemu                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            ✔ |            — |            — |            — |
+| PPSSPP                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| RPCS3                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| Azahar                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
 
 
-**Supported emulators (as of 0.6.5):** 
+**Supported emulators (as of 0.6.7):** 
 
  - mGBA (GB/GBC/GBA)
  - VisualBoyAdvance-Link (GB/GBC/GBA)
@@ -99,10 +102,12 @@ EmuHook lets you:
  - Project64 (N64)
  - Cemu (WiiU)
  - PPSSPP (PSP)
+ - RPCS3 (PS3)
+ - Azahar (3DS) (preliminar, help needed)
 
 
 
-**Supported Systems (as of 0.6.5):** 
+**Supported Systems (as of 0.6.7):** 
 
  - Nintendo Game Boy
  - Nintendo Super Game Boy
@@ -110,8 +115,10 @@ EmuHook lets you:
  - Nintendo Game Boy Advance
  - Sony PlayStation 1
  - Sony PlayStation 2
+ - Sony PlayStation 3
  - Sony PlayStation Portable
  - Nintendo DS
+ - Nintendo 3DS (preliminar, help needed)
  - Nintendo Entertainment System
  - Super Nintendo Entertainment System
  - Nintendo GameCube
@@ -628,6 +635,9 @@ I also made some ***achievement systems*** using EmuHook similar to **Retro Achi
 [Here is a **N64 demo** video using Project64 and Super Mario 64.](https://youtu.be/Q7lDY0NP6_g)
 
 [Here is a **WiiU and PSP demo** video using Cemu and PPSSPP on Zelda Breath of the Wild and God of War.](https://youtu.be/fytC6Ba9JuI)
+
+[Here is a **PS3 and 3DS demo** video using RPCS3 and Azahar on Sonic 4 Episode 1 and Super Mario 3D Land.](https://youtu.be/ywTp84Epl04)
+
 
 ---
 
