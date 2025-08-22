@@ -1,4 +1,5 @@
-﻿#NoEnv
+﻿version := "0.2"
+#NoEnv
 #SingleInstance, Force
 SetBatchlines -1
 #Persistent
@@ -13,6 +14,8 @@ Loop, %0%
 	param := %A_Index%
 	switch
 	{
+        case InStr(param, "-h") || InStr(param, "-help"):
+			MsgBox 0x40, Params, Allowed params:`n`nconfig=<path>
 		case InStr(param, "-config="):
 			configPath := StrSplit(param, "=")[2]
             loadConfig(configPath)
@@ -34,9 +37,13 @@ if(!InStr(memData.processName, "ahk_exe "))
 {
     memData.processName := "ahk_exe " memData.processName
 }
+if (!WinExist(memData.processName)) {
+    MsgBox 0x10, Process not found, The target process is not running or was not detected properly.`n`nMake sure target process is not minimized and/or run EmuHook as admin.
+    ExitApp
+}
 emu := new EmuHook(memData.processName, memData.romType)
 
-Gui, Add, ListView, h230 w300 gmemListView +LV0x4000 +LV0x10000, Name|Address|Bytes|Value| ; Double Buffered ListView
+Gui, Add, ListView, h230 w400 gmemListView +LV0x4000 +LV0x10000, Name|Address|Bytes|Value| ; Double Buffered ListView
 
 ImageListID := IL_Create(1)
 LV_SetImageList(ImageListID)
@@ -53,7 +60,7 @@ LV_ModifyCol()
 LV_ModifyCol(2, "Integer AutoHdr")
 LV_ModifyCol(3, "Integer AutoHdr")
 LV_ModifyCol(4, "Integer AutoHdr")
-Gui, Show, h250 w320
+Gui, Show, h250 w420, EmuHook Mem Viewer %version%
 SetFormat, integer, d
 SetTimer, iterateTable, % memData.updateInterval
 return
@@ -80,10 +87,26 @@ if (A_GuiEvent = "DoubleClick")
 {
     LV_GetText(rowName, A_EventInfo, 1)
     LV_GetText(rowAddress, A_EventInfo, 2)
-    ToolTip % "You double-clicked row number " A_EventInfo ".`nText: " rowName "`nAddress: " rowAddress "`nValue: " emu.rmd(rowAddress)
-    Sleep, 1000
-    ToolTip
+    LV_GetText(rowBytes, A_EventInfo, 3)
+    rowValue := emu.rmd(rowAddress, rowBytes)
+    gosub, showRamEditGui
 }
+return
+
+showRamEditGui:
+    SetTimer, iterateTable, Off
+    Gui ramEdit:Add, Text, x16 y16 w49 h23 +0x200 , Name:
+    Gui ramEdit:Add, Text, x16 y48 w49 h23 +0x200, Address:
+    Gui ramEdit:Add, Text, x16 y80 w49 h23 +0x200, Size:
+    Gui ramEdit:Add, Text, x16 y112 w49 h23 +0x200, Value:
+    Gui ramEdit:Add, Text, x72 y16 w121 h23 +0x200 +Center, % rowName
+    Gui ramEdit:Add, Text, x72 y48 w121 h23 +0x200 +Center, % rowAddress
+    Gui ramEdit:Add, Text, x72 y80 w121 h23 +0x200 +Center, % rowBytes == 1 ? "1 byte" : (rowBytes " bytes")
+    Gui ramEdit:Add, Edit, x72 y112 w120 h21 +Center vrowValue, % rowValue
+    Gui ramEdit:Add, Button, x112 y144 w80 h23 gsetRamValue, Set value
+    Gui ramEdit:Show, w201 h175, SET
+    Hotkey, Enter, setRamValue, On
+    Hotkey, NumpadEnter, setRamValue, On
 return
 
 loadConfig(path) {
@@ -96,6 +119,24 @@ loadConfig(path) {
         ExitApp
     }
 }
+
+setRamValue:
+    GuiControlGet, rowValue, ramEdit:, rowValue
+    emu.wmd(rowValue, rowAddress, rowBytes)
+    gosub, closeRamEdit
+return
+
+ramEditGuiEscape:
+ramEditGuiClose:
+    gosub, closeRamEdit
+return
+
+closeRamEdit:
+    Gui, ramEdit:Destroy
+    Hotkey, Enter, setRamValue, Off
+    Hotkey, NumpadEnter, setRamValue, Off
+    SetTimer, iterateTable, % memData.updateInterval
+return
 
 GuiEscape:
 GuiClose:

@@ -2,39 +2,22 @@
     "addresses": {
         "Pokeball 1": {
             "address": "0xD8D9",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "bytes": 1
         },
         "Pokeball 2": {
-            "address": "0xD8DB",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "address": "0xD8DB"
         },
         "Pokeball 3": {
-            "address": "0xD8DD",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "address": "0xD8DD"
         },
         "Pokeball 4": {
-            "address": "0xD8DF",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "address": "0xD8DF"
         },
         "Pokeball 5": {
-            "address": "0xD8E1",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "address": "0xD8E1"
         },
         "Battle Type": {
             "address": "0xD22D",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram",
             "options": {
                 "1": "Wild",
                 "2": "Trainer",
@@ -43,39 +26,21 @@
         },
         "Map 1": {
             "address": "0xC2D8",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "ram"
         },
         "PokeGear Selection": {
-            "address": "0xCF64",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "ram"
+            "address": "0xCF64"
         },
         "Inside PokeGear": {
-            "address": "0xCF73",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "ram"
+            "address": "0xCF73"
         },
         "PokeGear?": {
-            "address": "0xD0D2",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "address": "0xD0D2"
         },
         "Room": {
-            "address": "0xD148",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "address": "0xD148"
         },
         "Time of Day": {
-            "address": "0xD269",
-            "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "address": "0xD269"
         }
     },
     "processName": "auto",

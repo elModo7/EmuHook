@@ -1,16 +1,18 @@
 {
     "addresses": [
         {
-            "address": "0x8D9",
+            "address": "0xD8D9",
             "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "write": false
         },
         {
-            "address": "0x8DB",
+            "address": "0xD8DB"
+        },
+        {
+            "address": "0xD8DD",
             "bytes": 1,
-            "endian": "l",
-            "ram": "wram"
+            "write": true,
+            "value": 1
         }
     ],
     "processName": "VisualBoyAdvance.exe",

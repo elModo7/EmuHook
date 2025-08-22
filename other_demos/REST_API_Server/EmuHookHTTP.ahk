@@ -1,3 +1,8 @@
+; *** IMPORTANT ***
+; AHKHTTP is known for having memory leaks and other bugs so I am deprecating this script.
+; Always resort to Java version of EmuHook if you need an HTTP REST API.
+; Use the TCP/WebSocket version whenever possible for third-party integrations.
+
 ; Allows doing HTTP Queries to read/write memory just like the Java port
 ; AHK is notorious for dropping connections after a while, so this is mostly a test script
 ; Examples:

@@ -2,7 +2,7 @@
 #Persistent
 #SingleInstance Force
 SetBatchLines, -1
-serverVersion := "1.0.0"
+serverVersion := "1.0.3"
 servePort := 8000
 global globalConfig := {}
 global emu := {}
@@ -12,6 +12,8 @@ Loop, %0%
 	param := %A_Index%
 	switch
 	{
+		case InStr(param, "-h") || InStr(param, "-help"):
+			MsgBox 0x40, Params, Allowed params:`n`n-port=<port>`n-config=<path>
 		case InStr(param, "-port="):
 			servePort := StrSplit(param, "=")[2]
 		case InStr(param, "-config="):
@@ -33,8 +35,17 @@ if (configPath == "") {
 #Include <cJSON>
 #Include %A_ScriptDir%\..\..\lib\EmuHook.ahk
 
-emuName := "ahk_exe " globalConfig.processName
-emu := new EmuHook(emuName, globalConfig.romType)
+; It expects the emulator to be running already!
+globalConfig.processName := globalConfig.processName == "auto" ? checkRunningEmulator() : globalConfig.processName
+if(!InStr(globalConfig.processName, "ahk_exe "))
+{
+    globalConfig.processName := "ahk_exe " globalConfig.processName
+}
+if (!WinExist(globalConfig.processName)) {
+    MsgBox 0x10, Process not found, The target process is not running or was not detected properly.`n`nMake sure target process is not minimized and/or run EmuHook as admin.
+    ExitApp
+}
+emu := new EmuHook(globalConfig.processName, globalConfig.romType)
 
 Server := new SocketTCP()
 Server.OnAccept := Func("OnAccept")
@@ -46,34 +57,29 @@ OnAccept(Server)
 {
 	global globalConfig, sock
 	sock := Server.Accept()
-	SetTimer, sendData, % globalConfig.updateInterval
+	SetTimer, processData, % globalConfig.updateInterval
 }
 
-sendData() {
+processData() {
 	global sock, emu, globalConfig
 	resBodyArray := []
 	for k, addressData in globalConfig.addresses
 	{
 		resBody := {}
         resBody.address := addressData.address
-        resBody.ram := addressData.ram
-        resBody.bytes := addressData.bytes
-        resBody.endian := addressData.endian
-        resBody.completeAddress := ""
-        
-        switch resBody.ram
-        {
-            case "ram": resBody.completeAddress := resBody.address + emu.ram
-            case "wram": resBody.completeAddress := resBody.address + emu.wram
-            case "sram": resBody.completeAddress := resBody.address + emu.sram
-            default: resBody.completeAddress := resBody.address + emu.ram
-        }
-        
-        value := emu.rm(resBody.completeAddress, resBody.bytes, resBody.endian)
-        resBody.value := value ; Needed in a new line
-        resBodyArray.push(resBody)
+        resBody.bytes := addressData.bytes ? addressData.bytes : 1
+		
+		if (addressData.write) {
+			emu.wmd(addressData.value, resBody.address, resBody.bytes)
+		} else {
+			resBody.value := emu.rmd(resBody.address, resBody.bytes)
+			resBodyArray.push(resBody)
+		}
 	}
-	sock.SendText(JSON.Dump(resBodyArray))
+	try
+		sock.SendText(JSON.Dump(resBodyArray))
+	catch
+		SetTimer, processData, Off ; Client most surely disconnected
 }
 
 loadConfig(path) {
