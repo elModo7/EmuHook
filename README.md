@@ -1,4 +1,5 @@
 
+
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
 > **Version:** 0.6.7  
@@ -77,9 +78,9 @@ EmuHook lets you:
 | PCSX2                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            ✔ |            — |            — |            — |            — |            — |
 | Project64                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            ✔ |            — |            — |            — |            — |
 | Cemu                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            ✔ |            — |            — |            — |
-| PPSSPP                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
-| RPCS3                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
-| Azahar                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            — |
+| PPSSPP                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            ✔ |            — |            — |
+| RPCS3                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            ✔ |            — |
+| Azahar                          |                 — |                       — |                       — |                         — |                  — |           — |                             — |                                   — |                 — |            — |                  — |                         — |        — |            — |            — |            — |            — |            — |            — |            🔶 |
 
 
 **Supported emulators (as of 0.6.7):** 
@@ -444,7 +445,11 @@ Perfect for **multi-user setups** (e.g., a Twitch channel with both an overlay a
 
 -   Finish **SRAM mappings** across all emulators.
     
--   Add support for PS3, 3DS.
+-   Improve **support for 3DS**.
+
+- Add support for Dreamcast, Sega Saturn, WonderSwan, NeoGeo.
+
+- Add support for (low-priority) Atari: (Lynx, Jaguar, 2600...), Amstrad CPC, ZX Spectrum, Vectrex, Commodore 64.
 
 -   Create search tool example.
 
