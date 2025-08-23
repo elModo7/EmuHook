@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Lives": {
+            "address": "0x1A1290",
+            "bytes": 1
+        }
+    },
+    "processName": "gatobros.exe",
+    "romType": "pc",
+    "updateInterval": 300
+}

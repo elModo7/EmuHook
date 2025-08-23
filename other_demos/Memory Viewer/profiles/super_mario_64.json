@@ -1,0 +1,13 @@
+{
+    "addresses": {
+        "Mario Health": {
+            "address": "0x8033B21D"
+        },
+		"Mario Lives": {
+            "address": "0x8033B21E"
+        }
+    },
+    "processName": "Project64.exe",
+    "romType": "n64",
+    "updateInterval": 300
+}

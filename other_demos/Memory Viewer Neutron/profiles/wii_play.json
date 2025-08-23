@@ -1,0 +1,10 @@
+{
+    "addresses": {
+        "Game1 Points": {
+            "address": "0x91E40FC2"
+        }
+    },
+    "processName": "Dolphin.exe",
+    "romType": "wii",
+    "updateInterval": 300
+}

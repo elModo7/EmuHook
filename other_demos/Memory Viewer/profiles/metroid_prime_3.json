@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Samus Missiles": {
+            "address": "0x80995BA6",
+            "bytes": 2
+        }
+    },
+    "processName": "Dolphin.exe",
+    "romType": "wii",
+    "updateInterval": 300
+}

@@ -1,0 +1,49 @@
+{
+    "addresses": {
+        "Pokeball 1": {
+            "address": "0xD8D9",
+            "bytes": 1
+        },
+        "Pokeball 2": {
+            "address": "0xD8DB"
+        },
+        "Pokeball 3": {
+            "address": "0xD8DD"
+        },
+        "Pokeball 4": {
+            "address": "0xD8DF"
+        },
+        "Pokeball 5": {
+            "address": "0xD8E1"
+        },
+        "Battle Type": {
+            "address": "0xD22D",
+            "options": {
+                "1": "Wild",
+                "2": "Trainer",
+                "default": "No battle"
+            }
+        },
+        "Map 1": {
+            "address": "0xC2D8"
+        },
+        "PokeGear Selection": {
+            "address": "0xCF64"
+        },
+        "Inside PokeGear": {
+            "address": "0xCF73"
+        },
+        "PokeGear?": {
+            "address": "0xD0D2"
+        },
+        "Room": {
+            "address": "0xD148"
+        },
+        "Time of Day": {
+            "address": "0xD269"
+        }
+    },
+    "processName": "auto",
+    "romType": "gbc",
+    "updateInterval": 300
+}

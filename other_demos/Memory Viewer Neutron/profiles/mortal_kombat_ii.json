@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Battle Time": {
+            "address": "0xFFAB8E",
+            "bytes": 1
+        }
+    },
+    "processName": "Fusion.exe",
+    "romType": "32x",
+    "updateInterval": 300
+}

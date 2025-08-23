@@ -1,0 +1,20 @@
+// This example will not work because I have not put the time into
+// working with inner-pointers for this generic ram readers
+// use a custom script and attach to EmuHook like in the 
+// Eternal Darkness example
+{
+    "addresses": {
+        "Health": {
+            "address": "0x806101D4",
+            "bytes": 2,
+			"pointer": true,
+			"pointerData": {
+				"pointerSize": 4,
+				"pointers": ["0x24", "0x30"]
+			}
+        }
+    },
+    "processName": "Dolphin.exe",
+    "romType": "gc",
+    "updateInterval": 300
+}

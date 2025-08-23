@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Lives": {
+            "address": "0xD240",
+            "bytes": 1
+        }
+    },
+    "processName": "Fusion.exe",
+    "romType": "gg",
+    "updateInterval": 300
+}

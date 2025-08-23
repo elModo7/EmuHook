@@ -7,17 +7,35 @@
 ; INITIALIZE
 ; *******************************
 #NoEnv
-#SingleInstance, Force
+#SingleInstance, Off
 #Persistent
 SetWorkingDir, %A_ScriptDir%
 SetBatchLines, -1
-global version := "1.0.1"
+global version := "1.0.2"
 DetectHiddenWindows, On
 ListLines, Off
 #Include %A_ScriptDir%\..\..\lib\EmuHook.ahk
 #Include <cJSON>
 #Include <Neutron>
 FileEncoding, UTF-8
+configLoaded := 0
+global 0
+
+; Init Neutron GUI
+neutron := new NeutronWindow()
+neutron.Load("Memory_viewer.html")
+neutron.Gui("+LabelNeutron")
+
+Loop %0%
+{
+    GivenPath := %A_Index%
+    Loop %GivenPath%, 1
+        configPath = %A_LoopFileLongPath%
+	if (configPath != "") {
+		loadConfig(configPath)
+		configLoaded := 1
+	}
+}
 
 ; FileInstalls
 FileCreateDir, % A_Temp "\VictorDevLog_MemoryViewer"
@@ -32,23 +50,20 @@ Menu, Tray, Add, Exit, ExitSub
 Menu tray, Icon, Exit, % A_Temp "\VictorDevLog_MemoryViewer\close3.ico"
 
 ; Parameters
-Loop, %0%
-{
-	param := %A_Index%
-	switch
+if (!configLoaded) {
+	Loop, %0%
 	{
-        case InStr(param, "-h") || InStr(param, "-help"):
-			MsgBox 0x40, Params, Allowed params:`n`nconfig=<path>
-		case InStr(param, "-config="):
-			configPath := StrSplit(param, "=")[2]
-            loadConfig(configPath)
+		param := %A_Index%
+		switch
+		{
+			case InStr(param, "-h") || InStr(param, "-help"):
+				MsgBox 0x40, Params, Allowed params:`n`nconfig=<path>
+			case InStr(param, "-config="):
+				configPath := StrSplit(param, "=")[2]
+				loadConfig(configPath)
+		}
 	}
 }
-
-; Init Neutron GUI
-neutron := new NeutronWindow()
-neutron.Load("Memory_viewer.html")
-neutron.Gui("+LabelNeutron")
 
 if (configPath == "") {
 	if (FileExist("config.json"))
@@ -66,8 +81,7 @@ if(!InStr(memData.processName, "ahk_exe "))
     memData.processName := "ahk_exe " memData.processName
 }
 if (!WinExist(memData.processName)) {
-	MsgBox % memData.processName
-    MsgBox 0x10, Process not found, The target process is not running or was not detected properly.`n`nMake sure target process is not minimized and/or run EmuHook as admin.
+    MsgBox 0x10, Process not found, % "The target process " "" memData.processName "" " is not running or was not detected properly.`n`nMake sure target process is not minimized and/or run EmuHook as admin."
     ExitApp
 }
 

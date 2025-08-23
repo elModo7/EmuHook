@@ -1,0 +1,15 @@
+{
+    "addresses": {
+        "Being Chased": {
+            "address": "0x20A861E8",
+            "bytes": 4,
+			"options": {
+                "0": "Chill",
+                "default": "RUN!"
+            }
+        }
+    },
+    "processName": "pcsx2-qt.exe",
+    "romType": "ps2",
+    "updateInterval": 300
+}

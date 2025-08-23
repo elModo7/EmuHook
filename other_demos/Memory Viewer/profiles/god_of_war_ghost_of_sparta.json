@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Red Orbs": {
+            "address": "0x9E06AF0",
+            "bytes": 2
+        }
+    },
+    "processName": "PPSSPPWindows64.exe",
+    "romType": "psp",
+    "updateInterval": 300
+}

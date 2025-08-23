@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Rupees": {
+            "address": "0x80408164",
+            "bytes": 2
+        }
+    },
+    "processName": "Dolphin.exe",
+    "romType": "gc",
+    "updateInterval": 300
+}

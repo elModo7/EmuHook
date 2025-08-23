@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Wario Health": {
+            "address": "0x3001910",
+            "bytes": 1
+        }
+    },
+    "processName": "auto",
+    "romType": "gba",
+    "updateInterval": 300
+}

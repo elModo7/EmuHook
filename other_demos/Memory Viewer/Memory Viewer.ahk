@@ -1,6 +1,6 @@
-﻿version := "0.2.2"
+﻿version := "0.2.3"
 #NoEnv
-#SingleInstance, Force
+#SingleInstance, Off
 SetBatchlines -1
 #Persistent
 DetectHiddenWindows, On
@@ -8,18 +8,33 @@ ListLines, Off
 #Include %A_ScriptDir%\..\..\lib\EmuHook.ahk
 #Include <cJSON>
 FileEncoding, UTF-8
+configLoaded := 0
+global 0
 
-Loop, %0%
+Loop % %0%
 {
-	param := %A_Index%
-	switch
-	{
-        case InStr(param, "-h") || InStr(param, "-help"):
-			MsgBox 0x40, Params, Allowed params:`n`nconfig=<path>
-		case InStr(param, "-config="):
-			configPath := StrSplit(param, "=")[2]
-            loadConfig(configPath)
+    GivenPath := %A_Index%
+    Loop %GivenPath%, 1
+        configPath = %A_LoopFileLongPath%
+    if (configPath != "") {
+		loadConfig(configPath)
+		configLoaded := 1
 	}
+}
+
+if (!configLoaded) {
+    Loop, %0%
+    {
+        param := %A_Index%
+        switch
+        {
+            case InStr(param, "-h") || InStr(param, "-help"):
+                MsgBox 0x40, Params, Allowed params:`n`nconfig=<path>
+            case InStr(param, "-config="):
+                configPath := StrSplit(param, "=")[2]
+                loadConfig(configPath)
+        }
+    }
 }
 
 if (configPath == "") {
@@ -38,7 +53,7 @@ if(!InStr(memData.processName, "ahk_exe "))
     memData.processName := "ahk_exe " memData.processName
 }
 if (!WinExist(memData.processName)) {
-    MsgBox 0x10, Process not found, The target process is not running or was not detected properly.`n`nMake sure target process is not minimized and/or run EmuHook as admin.
+    MsgBox 0x10, Process not found, % "The target process " "" memData.processName "" " is not running or was not detected properly.`n`nMake sure target process is not minimized and/or run EmuHook as admin."
     ExitApp
 }
 emu := new EmuHook(memData.processName, memData.romType)

@@ -1,0 +1,10 @@
+{
+    "addresses": {
+        "Leon Health": {
+            "address": "0xACAEE"
+        }
+    },
+    "processName": "duckstation-qt-x64-ReleaseLTCG.exe",
+    "romType": "psx",
+    "updateInterval": 300
+}

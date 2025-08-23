@@ -1,0 +1,11 @@
+{
+    "addresses": {
+        "Health": {
+            "address": "0x4301D6FB",
+            "bytes": 1
+        }
+    },
+    "processName": "Cemu.exe",
+    "romType": "wiiu",
+    "updateInterval": 300
+}

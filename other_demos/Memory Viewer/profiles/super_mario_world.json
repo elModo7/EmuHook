@@ -1,0 +1,10 @@
+{
+    "addresses": {
+        "Mario Lives": {
+            "address": "0xDBE"
+        }
+    },
+    "processName": "snes9x.exe",
+    "romType": "snes",
+    "updateInterval": 300
+}
