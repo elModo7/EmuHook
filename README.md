@@ -353,6 +353,8 @@ emu.wmd(0x0032, 0x8034A0B2, 2) ; write big-endian halfword
 
 ## Changelog
 
+-   **0.6.8** - Add text extraction/injection support.
+
 -   **0.6.7** - Add support for Nintendo 3DS via Azahar (preliminar, help needed).
 
 -   **0.6.6** - Add support for Sony PlayStation 3 via RPCS3.
