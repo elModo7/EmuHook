@@ -3,7 +3,7 @@
 
 # EmuHook — a unified memory-hooking library for emulators and PC games
 
-> **Version:** 0.6.7  
+> **Version:** 0.6.8  
 > **Language:** AutoHotkey v1
 > **HTTP REST API Bridge:** Java 18  
 > **Core idea:** Hook an emulator’s process once, resolve the emulated console’s base RAM addresses, and expose a single, consistent API for reading/writing real-time game memory across many systems.
